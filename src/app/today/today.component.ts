@@ -128,12 +128,13 @@ export class DettPage{
 export class DettPageArt{
 
   detart:any;
-
+  src!:any
   constructor( @Inject(MAT_DIALOG_DATA) public data:any,private rapi2:HttpClient){
 
     this.rapi2.get("https://cvggold-dash.ns0.it/json/dettagli/det2_json.php?art="+this.data).subscribe(
       data=>{
         this.detart = data;
+        this.src = "https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="+this.detart[0].codiceArticolo
       }
       )
   }

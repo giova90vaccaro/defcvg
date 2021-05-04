@@ -15,6 +15,7 @@ export class SerchitemssComponent implements OnInit {
   urlimg!:string;
   s=false;
   m=false
+  src="https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="
   h1=['categoeria','articolo','prezzo','id']
   constructor(public dialog:MatDialog, private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient) { }
   ngOnInit(): void {

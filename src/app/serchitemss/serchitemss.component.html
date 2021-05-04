@@ -10,7 +10,7 @@
       <table id="customers">
 <tbody>
         <tr><th>Foto</th>             <th colspan="2">Articolo</th></tr>
-        <tr><td rowspan="5">foto</td> <td>Codice:</td><td>{{itemss[0].articolo}}</td></tr>
+        <tr><td rowspan="5"><img style="width: 100px;" src="{{src+itemss[0].articolo}}"></td> <td>Codice:</td><td>{{itemss[0].articolo}}</td></tr>
         <tr><td>Barcode:</td>         <td>{{itemss[0].barcode}} </td></tr>
         <tr><td>Categoria:</td>       <td>{{itemss[0].categoeria}}</td></tr>
         <tr><td>prezzo:</td>          <td>{{itemss[0].prezzo| currency:'EUR'}}</td></tr>
