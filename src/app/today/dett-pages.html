@@ -1,0 +1,25 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Categoria">
+    <table>
+      <tr><td>Nome</td><td>Q.ta</td><td>Euro</td></tr>
+      <mat-divider></mat-divider>
+      <tr *ngFor="let x of detcat">
+        <td>{{x.cat}}</td>
+        <td>{{x.qta}}</td>
+        <td>{{x.euro}} €</td>
+      </tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Articolo">
+    <table>
+      <tr><td>Codice</td><td>Categoria</td><td>Q.ta</td></tr>
+      <mat-divider></mat-divider>
+      <tr *ngFor="let x of detart">
+        <td>{{x.cod}}</td>
+        <td>{{x.cat}}</td>
+        <td>{{x.qta}}</td>
+      </tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>
+

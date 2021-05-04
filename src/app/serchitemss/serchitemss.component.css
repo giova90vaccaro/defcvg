@@ -1,0 +1,8 @@
+table{
+  width: 90%;
+  margin-left: 5%;
+}
+td,th{
+  text-align: left;
+  font-size: 8px;
+}

@@ -1,0 +1,28 @@
+mat-card-title{
+  text-align: left;
+}
+mat-card-subtitle{
+  text-align: left;
+}
+table{
+  width: 100%;
+}
+td.row{
+  text-align: left;
+  font-size: 70%;
+}
+tr.row{
+  text-align: left;
+  font-size: 70%;
+}
+tr.ct{
+  text-align: center;
+  font-size: 70%;
+}
+td.ct{
+  text-align: center;
+  font-size: 70%;
+}
+input{
+  align-items: left;
+}

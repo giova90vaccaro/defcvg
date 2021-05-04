@@ -1,0 +1,10 @@
+  <p align="center">Articolo: {{detart[0].codiceArticolo}}</p>
+  <table>
+    <tr><td>Negozio</td><td>Q.ta</td><td>Euro</td></tr>
+    <mat-divider></mat-divider>
+    <tr *ngFor="let x of detart">
+      <td>{{x.nome}}</td>
+      <td>{{x.qta}}</td>
+      <td>{{x.valore}} €</td>
+    </tr>
+  </table>

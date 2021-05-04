@@ -1,0 +1,110 @@
+<mat-card class="card">
+  <mat-card-title>
+    Negozio
+      <button mat-icon-button>
+        <mat-form-field appearance="fill">
+          <mat-label>Negozio</mat-label>
+          <mat-select [(value)]="negozio" >
+            <mat-option #negozio *ngFor="let x of store" value="{{x.serie}}">{{x.nome}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </button>
+  </mat-card-title>
+  <mat-card-subtitle>Report Negozi
+  </mat-card-subtitle>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngIf="show()" style="margin-top: 30px;">
+    <mat-accordion>
+      <mat-expansion-panel (click)="Orario()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Andamento Orario
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!--Tabella incasso orario-->
+        <table mat-table [dataSource]="iorario">
+          <ng-container matColumnDef="Giorno">
+            <th mat-header-cell *matHeaderCellDef> Data\Ora </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.Giorno.date | date: 'dd-MM-yyyy'}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h9">
+            <th mat-header-cell *matHeaderCellDef> 9 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h9}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h10">
+            <th mat-header-cell *matHeaderCellDef> 10 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h10}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h11">
+            <th mat-header-cell *matHeaderCellDef> 11 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h11}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h12">
+            <th mat-header-cell *matHeaderCellDef> 12 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h12}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h13">
+            <th mat-header-cell *matHeaderCellDef> 13 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h13}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h14">
+            <th mat-header-cell *matHeaderCellDef> 14 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h14}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h15">
+            <th mat-header-cell *matHeaderCellDef> 15 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h15}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h16">
+            <th mat-header-cell *matHeaderCellDef> 16 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h16}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h17">
+            <th mat-header-cell *matHeaderCellDef> 17 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h17}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h18">
+            <th mat-header-cell *matHeaderCellDef> 18 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h18}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h19">
+            <th mat-header-cell *matHeaderCellDef> 19 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h19}} </td>
+          </ng-container>
+          <ng-container matColumnDef="h20">
+            <th mat-header-cell *matHeaderCellDef> 20 </th>
+            <td mat-cell *matCellDef="let riga"> {{riga.h20}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="h1"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: h1"></tr>
+        </table>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Vendita per Categoria
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Tabella Venduto per categoria</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Vendita per Articolo
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Tabella Venduto per Articolo</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Ricerca Per Data
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Tabella Venduto per data</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  </mat-card-content>
+</mat-card>

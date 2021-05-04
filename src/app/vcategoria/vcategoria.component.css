@@ -1,0 +1,14 @@
+.mat-form-field{
+align-items: center;
+width: 90%;
+}
+.button{
+  width: 1000%;
+  border:1px
+}
+.mat-table{
+  width: 90%;
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+}

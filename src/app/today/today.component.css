@@ -1,0 +1,30 @@
+mat-card{
+  margin-top: 3%;
+  width: 90%;
+  align-content: center;
+  margin-left: 3%;
+}
+mat-card-title{
+text-align: left;
+}
+mat-card-subtitle{
+  text-align: left;
+}
+table{
+  width: 100%;
+}
+td{
+  text-align: left;
+  font-size: 80%;
+}
+td.inc{
+  text-align: center;
+  font-size: 80%;
+}
+th{
+  font-size: 90%;
+}
+th.inc{
+  text-align: center;
+  font-size: 90%;
+}

@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="show"></mat-spinner>
+<div align="center" *ngIf="!show">
+  <table width="80%">
+    <tr>
+      <th>Negozio</th>
+      <th>Venduto</th>
+      <th>Consegnato</th>
+    </tr>
+    <tr *ngFor="let x of data">
+      <td align="center">{{x.nome}}</td>
+      <td align="center">{{x.venduto}}</td>
+      <td align="center">{{x.consegnato}}</td>
+    </tr>
+  </table>
+</div>
+
+
