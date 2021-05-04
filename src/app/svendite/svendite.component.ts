@@ -48,11 +48,16 @@ export class SvenditeComponent implements OnInit {
   }
   rcdata():void{
     console.log("Ricerca Data");
+
       this.d_inizio = this.range.value.start;
-      const dat="?d1="+this.d_inizio.toISOString()+"&d2="+this.d_fine.toISOString();
+      var inizio = this.d_inizio.getFullYear()+"-"+(this.d_inizio.getMonth()+1).toString()+"-"+this.d_inizio.getDate()
+      var fine=this.d_fine.getFullYear()+"-"+(this.d_fine.getMonth()+1).toString()+"-"+(this.d_fine.getDate()-1).toString()
+
+      const dat="?d1="+inizio+"&d2="+fine;
       this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php"+dat).subscribe(
         data=>{
           this.aux = data;
+          console.log(this.aux)
           this.vendite = new MatTableDataSource(this.aux);
         }
       )
@@ -60,14 +65,9 @@ export class SvenditeComponent implements OnInit {
 
   openDialog(risposta:string) {
     this.idArt = risposta;
-      this.rapi.get("https://cvggold-dash.ns0.it/json/setitemes.php?id="+risposta).subscribe(
-        data=>{
-          this.r = data;
-        }
-      )
     const dialogRef = this.detart.open(DettArt, {
-      width: '95%',
-      data : this.r
+      width: '100%',
+      data : this.idArt
     });
   }
 }
@@ -80,12 +80,21 @@ export class DettArt {
   public darticolo:any;
   public hArt=["nome", "venduto", "consegnato"];
   public show=true;
+  art!:any
+  src="https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="
+
   constructor( @Inject(MAT_DIALOG_DATA) public data:any, private rapi:HttpClient){
 
-    if(data == null)
-      this.show=true;
-    else
-      this.show=false;
+    this.show=true;
+
+    this.rapi.get("https://cvggold-dash.ns0.it/json/setitemes.php?id="+this.data).subscribe(
+      rx=>{
+        this.art=rx
+        this.src = this.src+this.art[0].codiceArticolo;
+        this.show=false;
+
+      }
+    )
   }
 
 }
