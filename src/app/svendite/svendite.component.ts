@@ -50,8 +50,12 @@ export class SvenditeComponent implements OnInit {
     console.log("Ricerca Data");
 
       this.d_inizio = this.range.value.start;
-      var inizio = this.d_inizio.getFullYear()+"-"+(this.d_inizio.getMonth()+1).toString()+"-"+this.d_inizio.getDate()
-      var fine=this.d_fine.getFullYear()+"-"+(this.d_fine.getMonth()+1).toString()+"-"+(this.d_fine.getDate()-1).toString()
+      this.d_fine = this.range.value.end;
+      var inizio = this.d_inizio.toLocaleDateString("en-US")
+      var fine = this.d_fine.toLocaleDateString("en-US")
+      console.log(inizio)
+      console.log(fine)
+     // var fine=this.d_fine.getFullYear()+"-"+(this.d_fine.getMonth()+1).toString()+"-"+(this.d_fine.getDate()-1).toString()
 
       const dat="?d1="+inizio+"&d2="+fine;
       this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php"+dat).subscribe(
