@@ -19,24 +19,15 @@ mat-icon{
 }
 .nav{
   border: 3px black;
+  height: 100%;
+  z-index: 1;
+
 }
 .rotta{
   width: 100%;
-  height: 100%;
   text-align: center;
-  margin-top: 5%;
   vertical-align: center;
   align-content: center;
-  position: absolute;
-  z-index:1;
-}
-.rottapc{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  margin-top: 15%;
-  vertical-align: center;
-  align-content: center;
-  position: absolute;
-  z-index:1;
+
+
 }

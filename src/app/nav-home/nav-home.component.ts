@@ -17,14 +17,6 @@ export class NavHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(window.innerWidth >450){
-      this.tipo="rotta"
-      console.log(this.tipo)
-    }else{
-      this.tipo="rottapc"
-      console.log(this.tipo)
-    }
-
   }
 
 }
