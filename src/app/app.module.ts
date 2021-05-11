@@ -35,6 +35,7 @@ import { StoreComponent } from './store/store.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     Ng2GoogleChartsModule,
     MatSelectModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

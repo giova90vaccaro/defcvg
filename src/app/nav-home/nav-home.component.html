@@ -1,4 +1,47 @@
-<mat-drawer-container class="example-container">
+<div style="position: relative; width: 100%;">
+<div style="position: absolute; width: 100%;z-index:2; height: 100px;">
+<mat-toolbar>
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon (click)="toggleSidenav()" >menu</mat-icon>
+      </button>
+      <div>
+
+      </div>
+      <h1>CVG GOLD</h1>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button routerLink="/store" routerLinkActive="active">Negozi</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button>Incasso</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button>Saldi</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row *ngIf="showFiller">
+        <a mat-button>Nuovo Articolo</a>
+      </mat-toolbar-row>
+</mat-toolbar>
+</div>
+<div class="{{tipo}}">
+  <router-outlet></router-outlet>
+</div>
+</div>
+
+<!--<mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-list>
         <mat-list-item mat-button routerLink="/home" routerLinkActive="active">Home</mat-list-item>
@@ -21,7 +64,7 @@
     <router-outlet></router-outlet>
   </div>
   </div>
-</mat-drawer-container>
+</mat-drawer-container>-->
 
 
 
