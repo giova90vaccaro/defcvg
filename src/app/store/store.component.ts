@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-store',
@@ -11,15 +10,19 @@ export class StoreComponent implements OnInit {
 
   store:any;
   negozio:any
+  cat:any;
   iorario:any;
+  items:any;
   panelOpenState = false;
+  h3=['cart', 'dart', 'Venduto', 'Consegnato', 'perc'];
+  h2=['cat', 'Venduto', 'Consegnato', 'perc'];
   h1=['Giorno', 'h9', 'h10','h11','h12', 'h13','h14','h15','h16','h17','h19','h20'];
+  
   constructor(private api:HttpClient) {
 
       this.api.get("https://cvggold-dash.ns0.it/json/dettagli/store_json.php").subscribe(
         data=>{
           this.store = data;
-          console.log(this.store.nome)
       })
   }
   ngOnInit(): void {
@@ -34,15 +37,36 @@ export class StoreComponent implements OnInit {
       return sh
     }
   }
+  resetList():void{
+    console.log("entro nella funzione")
+    this.panelOpenState = false
+    this.negozio = null;
+    this.cat=null;
+    this.iorario=null;
+  }
     Orario():void{
 
       this.api.get("https://cvggold-dash.ns0.it/json/store/hours.php?serie="+this.negozio).subscribe(
         data=>{
             this.iorario = data
-            console.log(this.iorario)
         }
       )
 
+    }
+    Categoria():void{
+      this.api.get("http://cvggold-dash.ns0.it/prodotti/vendor.php?serie="+this.negozio).subscribe(
+        data=>{
+          this.cat = data
+        }
+      )
+
+    }
+    Articolo():void{
+      this.api.get("http://cvggold-dash.ns0.it/prodotti/itsold.php?serie="+this.negozio).subscribe(
+        data=>{
+          this.items = data;
+        }
+      )
     }
 
   }

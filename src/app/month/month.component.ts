@@ -19,6 +19,7 @@ export class MonthComponent implements OnInit {
   show:any=true;
   show2:any= true;
   show3:any=true;
+  disp:boolean=true;
 
   grincasso: GoogleChartInterface = {
     chartType: 'PieChart',
@@ -29,6 +30,11 @@ export class MonthComponent implements OnInit {
     chartType: 'PieChart',
     //firstRowIsData: true,
     options: {'title': 'Articoli - Mese', 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
+  };
+  grcategoria: GoogleChartInterface = {
+    chartType: 'PieChart',
+    //firstRowIsData: true,
+    options: {'title': 'Categoria - Mese', 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
   };
   constructor(private api:HttpClient) {
 
@@ -51,11 +57,22 @@ export class MonthComponent implements OnInit {
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/monthcat.php").subscribe(
       data=>{
         this.categoria = data
+        console.log(data)
+        var gr = this.categoria.map(function(aux:any){return [aux.cat, parseInt(aux.pezzi)]})
+        gr = [['Categoria', 'Q.ta']].concat(gr);
+        this.grcategoria.dataTable=gr;
+
         //Grafico Categoria - Settimana
       }
     );
   }
   ngOnInit(): void {
+    if(window.innerWidth>450 && window.innerWidth<900)
+      this.disp=true;
+    if(window.innerWidth<451)
+      this.disp=false;
+    else 
+      this.disp=true;
   }
   grafico():void{
     this.show=!this.show;

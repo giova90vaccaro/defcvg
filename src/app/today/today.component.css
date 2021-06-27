@@ -1,8 +1,10 @@
 mat-card{
   margin-top: 3%;
-  width: 90%;
+  width: 46%;
   align-content: center;
-  margin-left: 3%;
+  margin-left: 1%;
+  float:left; 
+  display:block
 }
 mat-card-title{
 text-align: left;
@@ -27,4 +29,12 @@ th{
 th.inc{
   text-align: center;
   font-size: 90%;
+}
+mat-card.due{
+  margin-top: 3%;
+  width: 95%;
+  align-content: center;
+  margin-left: 1%;
+  float:left; 
+  display:block
 }

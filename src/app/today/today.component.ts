@@ -14,6 +14,7 @@ export class TodayComponent implements OnInit {
   articoli:any;
   categoria:any;
   show:any=true;
+  disp:boolean=true;
   show2:any= true;
   show3:any=true;
   i=0;
@@ -94,6 +95,12 @@ export class TodayComponent implements OnInit {
       })
    }
   ngOnInit(): void {
+    if(window.innerWidth>450 && window.innerWidth<900)
+      this.disp=true;
+    if(window.innerWidth<451)
+      this.disp=false;
+    else 
+      this.disp=true;
   }
 }
 @Component({

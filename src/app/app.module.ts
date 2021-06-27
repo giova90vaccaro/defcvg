@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavHomeComponent } from './nav-home/nav-home.component';
@@ -13,7 +12,6 @@ import { MonthComponent } from './month/month.component';
 import { StartComponent } from './start/start.component';
 import { SerchitemssComponent,DialogContentExampleDialog } from './serchitemss/serchitemss.component';
 import { SvenditeComponent,DettArt } from './svendite/svendite.component';
-
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -35,7 +33,7 @@ import { StoreComponent } from './store/store.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -82,7 +80,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
     MatExpansionModule,
     MatSnackBarModule,
     MatToolbarModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

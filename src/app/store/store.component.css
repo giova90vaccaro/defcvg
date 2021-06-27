@@ -37,3 +37,6 @@ th.inc{
   margin-left: 8px;
   margin-top: 20px;
 }
+mat-select{
+  vertical-align: auto;
+}

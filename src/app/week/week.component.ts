@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./week.component.css']
 })
 export class WeekComponent implements OnInit {
+show:boolean=true;
 incasso:any;
 h1:string[]=['nome', 'valore', 'pezzi', 'Scontrini'];
 articoli:any;
@@ -35,6 +36,12 @@ h3:string[]=['cat', 'pezzi' ,'valore'];
    }
 
   ngOnInit(): void {
+      if(window.innerWidth>450 && window.innerWidth<900)
+        this.show=true;
+      if(window.innerWidth<451)
+        this.show=false;
+      else 
+        this.show=true;
   }
 
 }

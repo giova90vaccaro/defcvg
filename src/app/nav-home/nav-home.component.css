@@ -28,6 +28,8 @@ mat-icon{
   text-align: center;
   vertical-align: center;
   align-content: center;
-
-
+  z-index:1;
+}
+mat-toolbar{
+  position:fixed;
 }

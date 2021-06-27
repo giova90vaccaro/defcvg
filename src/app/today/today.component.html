@@ -1,3 +1,4 @@
+<div *ngIf="disp">
 <mat-card class="card">
   <mat-card-title>
     Incassi
@@ -84,7 +85,7 @@
   </mat-card-content>
 </mat-card>
 <mat-divider></mat-divider>
-<mat-card>
+<mat-card class="due">
   <mat-card-title>Categoria
     <span style="float: right;">
       <button mat-icon-button (click)="grafico3()">
@@ -119,3 +120,129 @@
   </div>
   </mat-card-content>
 </mat-card>
+</div>
+
+<div *ngIf="!disp">
+  <mat-card class="due">
+    <mat-card-title>
+      Incassi
+      <span style="float: right;">
+        <button mat-icon-button (click)="grafico()">
+          <mat-icon>bar_chart</mat-icon>
+        </button>
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle>Report Negozi
+    </mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+    <div *ngIf="show">
+      <table mat-table [dataSource]="incasso">
+      <ng-container matColumnDef="Negozio">
+        <th mat-header-cell *matHeaderCellDef> Negozio </th>
+        <td mat-cell *matCellDef="let riga"> {{riga.Negozio}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Oggi">
+        <th class="inc" mat-header-cell *matHeaderCellDef> Incasso</th>
+        <td class="inc" mat-cell *matCellDef="let riga">
+          <button mat-button (click)="openDialog(riga.serie)">{{riga.Oggi| currency:'EUR'}}</button>  </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Pezzi">
+        <th class="inc" mat-header-cell *matHeaderCellDef> Pezzi</th>
+        <td class="inc" mat-cell *matCellDef="let riga"> {{riga.Pezzi}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Scontrini">
+        <th class="inc" mat-header-cell *matHeaderCellDef> N. Scontrini</th>
+        <td class="inc" mat-cell *matCellDef="let riga"> {{riga.Scontrini}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="h1"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: h1"></tr>
+    </table>
+  </div>
+  <div *ngIf="!show">
+    <google-chart [data]="grincasso"></google-chart>
+  </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="due">
+    <mat-card-title>
+      Articolo
+      <span style="float: right;">
+        <button mat-icon-button (click)="grafico2()">
+          <mat-icon>bar_chart</mat-icon>
+        </button>
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle>Report Negozi</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+  <div *ngIf="show2">
+      <table mat-table [dataSource]="articoli">
+        <ng-container matColumnDef="codiceArticolo">
+          <th mat-header-cell *matHeaderCellDef> codiceArticolo </th>
+          <td mat-cell *matCellDef="let r"> {{r.codiceArticolo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="descrizione">
+          <th mat-header-cell *matHeaderCellDef> Descrizione </th>
+          <td mat-cell *matCellDef="let r"> {{r.descrizione}} </td>
+        </ng-container>
+        <ng-container matColumnDef="TotalQ">
+          <th class="inc" mat-header-cell *matHeaderCellDef> TotalQ </th>
+          <td class="inc" mat-cell *matCellDef="let r">
+            <button mat-button (click)="openDialogArt(r.id)">{{r.TotalQ}}</button>  </td>
+        </ng-container>
+        <ng-container matColumnDef="TotalEu">
+          <th class="inc" mat-header-cell *matHeaderCellDef> TotalEu </th>
+          <td class="inc" mat-cell *matCellDef="let r"> {{r.TotalEu| currency:'EUR'}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="h2"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: h2"></tr>
+      </table>
+    </div>
+    <div *ngIf="!show2">
+      <google-chart [data]="grarticoli"></google-chart>
+    </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card class="due">
+    <mat-card-title>Categoria
+      <span style="float: right;">
+        <button mat-icon-button (click)="grafico3()">
+          <mat-icon>bar_chart</mat-icon>
+        </button>
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle>Report Negozi</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div *ngIf="show3">
+      <table mat-table [dataSource]="categoria">
+        <ng-container matColumnDef="cat">
+          <th mat-header-cell *matHeaderCellDef> codiceArticolo </th>
+          <td mat-cell *matCellDef="let r"> {{r.cat}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="qta">
+          <th class="inc" mat-header-cell *matHeaderCellDef> Q.ta </th>
+          <td class="inc" mat-cell *matCellDef="let r"><button mat-button (click)="openDetCat(r.cat)">{{r.qta}}</button></td>
+        </ng-container>
+        <ng-container matColumnDef="euro">
+          <th class="inc" mat-header-cell *matHeaderCellDef> Euro </th>
+          <td class="inc" mat-cell *matCellDef="let r"> {{r.euro| currency:'EUR'}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="h3"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: h3"></tr>
+      </table>
+    </div>
+    <div *ngIf="!show3">
+      <google-chart [data]="grcategoria"></google-chart>
+    </div>
+    </mat-card-content>
+  </mat-card>
+  </div>
+  
