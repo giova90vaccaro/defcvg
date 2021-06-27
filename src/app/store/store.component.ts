@@ -57,6 +57,7 @@ export class StoreComponent implements OnInit {
       this.api.get("http://cvggold-dash.ns0.it/prodotti/vendor.php?serie="+this.negozio).subscribe(
         data=>{
           this.cat = data
+          console.log(this.cat);
         }
       )
 

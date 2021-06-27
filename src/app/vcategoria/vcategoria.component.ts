@@ -18,7 +18,7 @@ d_inizio = new Date();
 d_fine = new Date();
 risposta:any;
 selezione:boolean=false;
-h2:string[]=['Cat1', 'TotPz', 'TotEu'];
+h2:string[]=['Cat1', 'TotPz', 'Consegnato','TotEu', 'perc'];
 
 
 constructor(private connessione:HttpClient ) {

@@ -22,9 +22,17 @@
         <th mat-header-cell *matHeaderCellDef> Tot (PZ) </th>
         <td mat-cell *matCellDef="let r"> {{r.TotPz}} </td>
       </ng-container>
+      <ng-container matColumnDef="Consegnato">
+        <th mat-header-cell *matHeaderCellDef> Consegnato</th>
+        <td mat-cell *matCellDef="let r"> {{r.Consegnato}}</td>
+      </ng-container>
       <ng-container matColumnDef="TotEu">
         <th mat-header-cell *matHeaderCellDef> Tot (Eu)</th>
         <td mat-cell *matCellDef="let r"> {{r.TotEu}}  €</td>
+      </ng-container>
+      <ng-container matColumnDef="perc">
+        <th mat-header-cell *matHeaderCellDef> %</th>
+        <td mat-cell *matCellDef="let r"> {{(r.TotPz/r.Consegnato)*100 | number: '.2-2'}} %</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="h2"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: h2"></tr>
