@@ -7,42 +7,39 @@
       </button>
       <h1 style="text-align: center;">CVG GOLD</h1>
     </mat-toolbar-row>
-    <!--<div></div><br>-->
-    <!--<div class="rotta" *ngIf="tipo">
-    <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-      </mat-toolbar-row>
       <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/store" routerLinkActive="active">Negozi</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button>Incasso</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button>Saldi</a>
-      </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button>Nuovo Articolo</a>
-      </mat-toolbar-row>
-    </div>-->
-      <mat-toolbar-row *ngIf="showFiller">
-        <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-        <a mat-button routerLink="/store" routerLinkActive="active">Negozi</a>
-        <a mat-button routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
-        <a mat-button routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
-        <a mat-button routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
+        <a mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
+        <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
+        <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
+        <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
+        <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
         <a mat-button>Incasso</a>
         <a mat-button>Saldi</a>
         <a mat-button>Nuovo Articolo</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active"> Vendite Categoria</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active"> Ricerca Articoli</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button>Incasso</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button>Saldi</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a mat-button>Nuovo Articolo</a>
         </mat-toolbar-row>
 </mat-toolbar>
 </div><br><br><br><br>
@@ -50,4 +47,5 @@
   <router-outlet></router-outlet>
 </div>
 </div>
+
 
