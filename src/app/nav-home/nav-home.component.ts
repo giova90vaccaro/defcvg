@@ -8,21 +8,29 @@ import {MatSidenav} from '@angular/material/sidenav';
 })
 export class NavHomeComponent implements OnInit {
   showFiller = false;
+  showFiller2 = false;
   tipo=false
   constructor() { }
 
   toggleSidenav(){
-    this.showFiller = !this.showFiller
+    if(this.tipo)
+      this.showFiller = !this.showFiller;
+    else
+      this.showFiller2 = !this.showFiller2;
+
+  }
+
+  resetshow():void{
+    this.showFiller=false;
+    this.showFiller2=false
   }
 
   ngOnInit(): void {
-    /*
     if(window.innerWidth>450)
       this.tipo=true
     else
       this.tipo=false
-    */
-   this.tipo= true;
+
   }
 
 }
