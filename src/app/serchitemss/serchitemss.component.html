@@ -1,60 +1,105 @@
-<mat-form-field>
-  <mat-label>Articoli</mat-label>
-  <input matInput #articolo>
-</mat-form-field>
-  <button mat-button (click)="rit(articolo.value)">Ricerca</button>
-
-  <div>
-    <!-- Div singlo risultato -->
-    <div *ngIf="s">
-      <table id="customers">
-<tbody>
-        <tr><th>Foto</th>             <th colspan="2">Articolo</th></tr>
-        <tr><td rowspan="5"><img style="width: 100px;" src="{{src+itemss[0].articolo}}"></td> <td>Codice:</td><td>{{itemss[0].articolo}}</td></tr>
-        <tr><td>Barcode:</td>         <td>{{itemss[0].barcode}} </td></tr>
-        <tr><td>Categoria:</td>       <td>{{itemss[0].categoeria}}</td></tr>
-        <tr><td>prezzo:</td>          <td>{{itemss[0].prezzo| currency:'EUR'}}</td></tr>
-        <tr><td>Costo:</td>             <td>0,00</td></tr>
-        <tr><th colspan ="3">Negozi</th></tr>
-        <tr id="c2">
-          <th>Negozio</th>
-          <th>Venduto</th>
-          <th>Consegnato</th>
-        </tr>
-        <tr *ngFor="let r of shop">
-          <td>{{r.negozio}}</td>
-          <td>{{r.venduto}}</td>
-          <td>{{r.consegna}}</td>
-        </tr>
-      </tbody>
-      </table>
+<div class="page">
+    <div class="header">
+      <mat-form-field class="ricerca">
+        <mat-label>Cod. Articolo</mat-label>
+        <input matInput #articolo>
+      </mat-form-field>
+      <button mat-icon-button (click)="cerca(articolo.value)"><mat-icon>search</mat-icon></button>
     </div>
-    <!-- Div risultato multiplo -->
-    <div *ngIf="m">
+    <mat-spinner *ngIf="progressive"></mat-spinner>
+    <br>
+      <div *ngIf="show">
+        <div class="card">
+            <p class="int" >Cod. Art</p>
+            <div class="container">
+              <p class="art">{{nome}}</p>
+            </div>
+        </div>
+        <div class="card">
+          <p class="int">Descrizione</p>
+            <div class="container">
+              <p class="art">{{descrizione}}</p>
+            </div>
+        </div>
+        <div class="card">
+          <p class="int">Categoria</p>
+            <div class="container">
+              <p class="art">{{cat}}</p>
+            </div>
+        </div>
+        <div class="card">
+          <p class="int">Alias</p>
+            <div class="container">
+              <p class="art">{{barcode}}</p>
+            </div>
+        </div>
+        <div class="card">
+        <p class="prezzo">Prezzo</p>
+            <div class="container">
+              <p class="part">{{prezzo}} €</p>
+            </div>
+        </div>
+        <div class="card">
+          <p class="costo">Costo</p>
+            <div class="container">
+              <p class="cart">{{media}} €</p>
+            </div>
+        </div>
+      </div>
+  <br><br><br><br>
 
-        <table id="customers" mat-table [dataSource]="itemss">
-          <ng-container matColumnDef="categoeria">
-            <th mat-header-cell *matHeaderCellDef> Categoria </th>
-            <td mat-cell *matCellDef="let riga"> {{riga.categoeria}} </td>
-          </ng-container>
+        <div class="foto" *ngIf="show" >
+          <img src="{{foto}}">
+        </div>
+        <div style="width: 38%;float:left;" *ngIf="show">
+          <table mat-table [dataSource]="tabella">
+            <ng-container matColumnDef="Negozio">
+              <th class="row2" mat-header-cell *matHeaderCellDef> Negozio </th>
+              <td class="row2" mat-cell *matCellDef="let riga"> {{riga.Negozio}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Consegnato">
+              <th class="row" mat-header-cell *matHeaderCellDef> Consegnato </th>
+              <td class="row" mat-cell *matCellDef="let riga"> {{riga.Consegnato}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Venduti">
+              <th class="row" mat-header-cell *matHeaderCellDef> Venduti </th>
+              <td class="row" mat-cell *matCellDef="let riga"> {{riga.Venduti}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Perc">
+              <th class="row" mat-header-cell *matHeaderCellDef>%</th>
+              <td class="rowp" mat-cell *matCellDef="let riga">{{riga.Perc}} %</td>
+            </ng-container>
+            <ng-container matColumnDef="Giacenza">
+              <th class="row" mat-header-cell *matHeaderCellDef>Giacenza</th>
+              <td class="row" mat-cell *matCellDef="let riga">{{riga.Giacenza}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="header"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: header"></tr>
+          </table>
+        </div>
+        <div style="width: 38%;height: 200px;float:left; border-radius: 10px;" *ngIf="show">
+          <table mat-table [dataSource]="documenti">
+            <ng-container matColumnDef="ragioneSociale">
+              <th class="row22" mat-header-cell *matHeaderCellDef> Fornitore </th>
+              <td class="row22" mat-cell *matCellDef="let riga"> {{riga.ragioneSociale}} </td>
+            </ng-container>
+            <ng-container matColumnDef="data">
+              <th class="rowf" mat-header-cell *matHeaderCellDef> Data </th>
+              <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.data.date | date:'dd-MM-YYYY'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="qta">
+              <th class="rowf" mat-header-cell *matHeaderCellDef> Q.ta </th>
+              <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.qta}} </td>
+            </ng-container>
+            <ng-container matColumnDef="numero">
+              <th class="rowf" mat-header-cell *matHeaderCellDef>N.Doc</th>
+              <td class="rowf" mat-cell *matCellDef="let riga">{{riga.numero}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="hdocumenti"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: hdocumenti"></tr>
+          </table>
+        </div>
+      </div>
 
-          <ng-container matColumnDef="articolo">
-            <th class="inc" mat-header-cell *matHeaderCellDef>articolo</th>
-            <td class="inc" mat-cell *matCellDef="let riga">{{riga.articolo}}</td>
-          </ng-container>
-          <ng-container matColumnDef="prezzo">
-            <th class="inc" mat-header-cell *matHeaderCellDef>Prezzo</th>
-            <td class="inc" mat-cell *matCellDef="let riga">{{riga.prezzo| currency:'EUR'}}</td>
-          </ng-container>
 
-          <ng-container matColumnDef="id">
-            <th class="inc" mat-header-cell *matHeaderCellDef> id</th>
-            <td class="inc" mat-cell *matCellDef="let riga">
-               <mat-icon mat-button (click)="openDialog(riga.articolo)">info</mat-icon>  </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="h1"></tr>
-          <tr mat-row *matRowDef="let myRowData; columns: h1"></tr>
-        </table>
 
-    </div>
-  </div>

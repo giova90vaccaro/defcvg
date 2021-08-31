@@ -95,11 +95,11 @@ export class TodayComponent implements OnInit {
       })
    }
   ngOnInit(): void {
-    if(window.innerWidth>450 && window.innerWidth<900)
+    if(window.innerWidth>250 && window.innerWidth<900)
       this.disp=true;
-    if(window.innerWidth<451)
+    if(window.innerWidth<251)
       this.disp=false;
-    else 
+    else
       this.disp=true;
   }
 }

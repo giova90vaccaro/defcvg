@@ -10,48 +10,61 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SerchitemssComponent implements OnInit {
 
-  itemss:any;
-  shop:any;
-  urlimg!:string;
-  s=false;
-  m=false
-  src="https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="
-  h1=['categoeria','articolo','prezzo','id']
-  constructor(public dialog:MatDialog, private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient) { }
+  src="https://cvggold-dash.ns0.it/prodotti/imgdet.php?art="
+  foto!:String;
+  cod!:String;
+  show!:boolean
+  articolo:any;
+  progressive!:boolean;
+  tabella:any;
+  documenti:any;
+  hdocumenti:string[]=['ragioneSociale', 'data', 'qta', 'numero'];
+  header:string[]=['Negozio', 'Consegnato', 'Venduti','Perc','Giacenza'];
+  nome:any; descrizione:any;madre:any; barcode:any;prezzo:any;cat:any;media:any;
+
+  constructor(public dialog:MatDialog, private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient,private richiesta : HttpClient, private dettart : HttpClient, private doc:HttpClient) { }
   ngOnInit(): void {
   }
+  cerca(x:String):void{
+    this.show=false;
+    if(x){
+    this.progressive=true;
+    console.log(x);
+    this.foto = this.src+x;
 
-  rit(item:String):void{
-    var dim:number;
-    if(!item){
-      this.messaggio.open("Errore Codice Non inserito", "X")
-    }else{
-      this.api.get("https://cvggold-dash.ns0.it/json/dettagli/item_json.php?x="+item).subscribe(
+    this.cod=x;
+
+    this.richiesta.get("https://cvggold-dash.ns0.it/prodotti/dettarticolo.php?art="+x).subscribe(
+      data=>{
+        this.articolo=data;
+        this.show=true;
+        this.progressive=false;
+        this.nome = this.articolo.nome;
+        this.descrizione = this.articolo.descrizione;
+        this.cat=this.articolo.cat;
+        this.barcode = this.articolo.barcode
+        this.prezzo = this.articolo.Prezzo;
+        this.media = this.articolo.media;
+      }
+    )
+console.log("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+x);
+    this.dettart.get("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+x).subscribe(
+      data=>{
+          this.tabella = data;
+          console.log(this.tabella);
+      })
+
+      this.doc.get("https://cvggold-dash.ns0.it/prodotti/documenti.php?art="+x).subscribe(
         data=>{
-            this.itemss = data
-            console.log(data)
-            dim = this.itemss.length;
-            if(dim>1){
-              this.m=true
-              this.s=false
-            }else{
-              //entro nella tabella singola
-              this.dettaglio.get("https://cvggold-dash.ns0.it/json/store/store.php?art="+this.itemss[0].articolo).subscribe(
-                data=>{
-                  this.shop = data;
-                  console.log(this.shop)
-                }
-              )
-              this.m=false
-              this.s=true
-            }
-        },
-        error=>{
-          console.log("errore della pagina")
+            this.documenti = data;
+            console.log(this.documenti);
         }
-      )
+      );
+
     }
   }
+
+
 
   openDialog(par:string) {
     const dialogRef = this.dialog.open(DialogContentExampleDialog,{
