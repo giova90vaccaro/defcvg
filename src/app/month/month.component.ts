@@ -20,6 +20,9 @@ export class MonthComponent implements OnInit {
   bstore:any;
   bcat:any;
   bart:any;
+  estore:any;
+  ecat:any;
+  eart:any;
   show2:any= true;
   show3:any=true;
   disp:boolean=true;
@@ -48,8 +51,9 @@ export class MonthComponent implements OnInit {
         this.incasso = data;
         var gr = this.incasso.map(function(aux:any){return [aux.nome, parseInt(aux.valore)]})
         gr = [['Negozio', 'Incasso']].concat(gr);
-        this.grincasso.dataTable=gr;
-       this.bstore=this.incasso[0].nome;
+        this.grincasso.dataTable = gr;
+        this.bstore = this.incasso[0].nome;
+        this.estore = this.incasso[0].valore;
       }
     )
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/monthart.php").subscribe(
@@ -59,6 +63,7 @@ export class MonthComponent implements OnInit {
         gr = [['Articolo', 'Q.ta']].concat(gr);
         this.grarticoli.dataTable=gr;
         this.bart=this.articolo[0].nome;
+        this.eart = this.articolo[0].valore;
       }
     );
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/monthcat.php").subscribe(
@@ -68,6 +73,7 @@ export class MonthComponent implements OnInit {
         gr = [['Categoria', 'Q.ta']].concat(gr);
         this.grcategoria.dataTable=gr;
         this.bcat=this.categoria[0].cat;
+        this.ecat = this.categoria[0].valore;
       }
     );
 

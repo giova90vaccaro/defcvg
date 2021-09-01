@@ -1,20 +1,23 @@
 <div *ngIf="disp">
   <div class="card2">
-    <p class="int" >Negozio</p>
+    <a class="int" >Negozio</a>
     <div class="container">
-      <a class="cnt">{{bstore}}</a>
+      <a class="cnt">{{bstore}}</a><br>
+      <a style="color: red; size: small;">( {{estore| currency:'EUR':true}} )</a>
     </div>
 </div>
 <div class="card2">
-  <p class="int" >Categoria</p>
+  <a class="int" >Categoria</a>
   <div class="container">
-    <a class="cnt">{{bcat}}</a>
+    <a class="cnt">{{bcat}}</a><br>
+    <a style="color: red; size: small;">( {{ecat| currency:'EUR':true}} )</a>
   </div>
 </div>
 <div class="card2">
-<p class="int" >Articolo</p>
+<a class="int" >Articolo</a>
 <div class="container">
-  <a class="cnt">{{bart}}</a>
+  <a class="cnt">{{bart}}</a><br>
+  <a style="color: red; size: small;">( {{eart| currency:'EUR':true}} )</a>
 </div>
 </div>
 <mat-divider></mat-divider>

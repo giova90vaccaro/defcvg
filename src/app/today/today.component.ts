@@ -15,6 +15,9 @@ export class TodayComponent implements OnInit {
   categoria:any;
   bcat:any;
   bart:any;
+  estore:any;
+  eart:any;
+  ecat:any;
   show:any=true;
   disp:boolean=true;
   show2:any= true;
@@ -79,6 +82,7 @@ export class TodayComponent implements OnInit {
         gr = [['Negozio', 'Oggi']].concat(gr);
         this.grincasso.dataTable=gr;
         this.negozio = this.incasso[0].Negozio;
+        this.estore = this.incasso[0].Oggi;
       }
     );
     this.api.get("https://cvggold-dash.ns0.it/json/art_jsond.php").subscribe(
@@ -88,6 +92,7 @@ export class TodayComponent implements OnInit {
         gra = [['Articolo', 'Q.ta']].concat(gra);
         this.grarticoli.dataTable=gra;
         this.bart=this.articoli[0].codiceArticolo
+        this.eart = this.articoli[0].TotalEu;
       }
     );
     this.api.get("https://cvggold-dash.ns0.it/json/cat_json.php").subscribe(
@@ -97,6 +102,7 @@ export class TodayComponent implements OnInit {
         grc = [['Categoria', 'Q.ta']].concat(grc);
         this.grcategoria.dataTable = grc;
         this.bcat = this.categoria[0].cat;
+        this.ecat = this.categoria[0].euro;
 
       }
     );
