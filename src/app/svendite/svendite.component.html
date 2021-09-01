@@ -2,13 +2,13 @@
 <mat-card-title>Ricerca Vendite</mat-card-title>
 <mat-card-subtitle>Ricerca Per Articolo</mat-card-subtitle>
 <mat-card-content>
-
-  <mat-form-field>
+<mat-spinner *ngIf="!show"></mat-spinner>
+  <mat-form-field *ngIf="show">
     <mat-label>Ricerca Rapida</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ricerca" #input>
   </mat-form-field>
   <br>
-  <div>
+  <div *ngIf="show">
   <mat-form-field appearance="fill">
     <mat-label>Inserimento Date</mat-label>
     <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
@@ -22,7 +22,7 @@
   </div>
 
     <div>
-  <table mat-table [dataSource]="vendite">
+  <table *ngIf="show" mat-table [dataSource]="vendite">
 
     <ng-container matColumnDef="categoria">
       <th class="row" mat-header-cell *matHeaderCellDef> Categoria </th>

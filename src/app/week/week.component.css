@@ -3,7 +3,7 @@ mat-card{
   width: 46%;
   align-content: center;
   margin-left: 1%;
-  float:left; 
+  float:left;
   display:block
 }
 mat-card-title{
@@ -35,6 +35,33 @@ mat-card.due{
   width: 95%;
   align-content: center;
   margin-left: 1%;
-  float:left; 
+  float:left;
   display:block
+}
+.int{
+  text-align: center;
+  color: silver;
+  font-size: small;
+}
+button{
+  width: 25%;
+  align-items: center;
+  margin-right: 2%;
+}
+.card2{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  float: left;
+  width: 22%;
+  margin-top: 2%;
+  align-content: center;
+  margin-left: 8%;
+}
+
+.cnt{
+  text-align: center;
+  color: green;
+  font-size: medium;
+
 }

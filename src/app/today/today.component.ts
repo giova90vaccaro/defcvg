@@ -13,11 +13,14 @@ export class TodayComponent implements OnInit {
   incasso:any;
   articoli:any;
   categoria:any;
+  bcat:any;
+  bart:any;
   show:any=true;
   disp:boolean=true;
   show2:any= true;
   show3:any=true;
   i=0;
+  negozio:any;
   h1:string[]=['Negozio', 'Oggi', 'Pezzi', 'Scontrini'];
   h2:string[]=['codiceArticolo','descrizione', 'TotalQ', 'TotalEu'];
   h3:string[]=['cat', 'qta', 'euro'];
@@ -38,34 +41,7 @@ export class TodayComponent implements OnInit {
     options: {'title': 'Articoli', 'is3D':true, 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
   };
 
-  constructor(private api:HttpClient, public detpag:MatDialog, public detart:MatDialog, public detcat:MatDialog) {
-
-    this.api.get("https://cvggold-dash.ns0.it/json/inc_json.php").subscribe(
-      data=>{
-        this.incasso=data;
-        var gr = this.incasso.map(function(aux:any){return [aux.Negozio, parseInt(aux.Oggi)]})
-        gr = [['Negozio', 'Oggi']].concat(gr);
-        this.grincasso.dataTable=gr;
-      }
-    );
-    this.api.get("https://cvggold-dash.ns0.it/json/art_jsond.php").subscribe(
-      art=>{
-        this.articoli=art;
-        var gra = this.articoli.map(function(aux:any){ return [aux.codiceArticolo, parseInt(aux.TotalQ)] })
-        gra = [['Articolo', 'Q.ta']].concat(gra);
-        this.grarticoli.dataTable=gra;
-      }
-    );
-    this.api.get("https://cvggold-dash.ns0.it/json/cat_json.php").subscribe(
-      cat=>{
-        this.categoria=cat;
-        var grc = this.categoria.map(function(aux:any){ return [aux.cat,parseInt(aux.qta)] })
-        grc = [['Categoria', 'Q.ta']].concat(grc);
-        this.grcategoria.dataTable = grc;
-
-      }
-    );
-   }
+  constructor(private api:HttpClient, public detpag:MatDialog, public detart:MatDialog, public detcat:MatDialog) {}
    openDialogArt(rxart:string):void{
     const rifDialogArt = this.detart.open(DettPageArt,{
       width:'80%',
@@ -95,6 +71,37 @@ export class TodayComponent implements OnInit {
       })
    }
   ngOnInit(): void {
+
+    this.api.get("https://cvggold-dash.ns0.it/json/inc_json.php").subscribe(
+      data=>{
+        this.incasso=data;
+        var gr = this.incasso.map(function(aux:any){return [aux.Negozio, parseInt(aux.Oggi)]})
+        gr = [['Negozio', 'Oggi']].concat(gr);
+        this.grincasso.dataTable=gr;
+        this.negozio = this.incasso[0].Negozio;
+      }
+    );
+    this.api.get("https://cvggold-dash.ns0.it/json/art_jsond.php").subscribe(
+      art=>{
+        this.articoli=art;
+        var gra = this.articoli.map(function(aux:any){ return [aux.codiceArticolo, parseInt(aux.TotalQ)] })
+        gra = [['Articolo', 'Q.ta']].concat(gra);
+        this.grarticoli.dataTable=gra;
+        this.bart=this.articoli[0].codiceArticolo
+      }
+    );
+    this.api.get("https://cvggold-dash.ns0.it/json/cat_json.php").subscribe(
+      cat=>{
+        this.categoria=cat;
+        var grc = this.categoria.map(function(aux:any){ return [aux.cat,parseInt(aux.qta)] })
+        grc = [['Categoria', 'Q.ta']].concat(grc);
+        this.grcategoria.dataTable = grc;
+        this.bcat = this.categoria[0].cat;
+
+      }
+    );
+
+
     if(window.innerWidth>250 && window.innerWidth<900)
       this.disp=true;
     if(window.innerWidth<251)

@@ -17,6 +17,9 @@ export class MonthComponent implements OnInit {
   categoria:any;
   h3:string[]=['cat', 'pezzi' ,'valore'];
   show:any=true;
+  bstore:any;
+  bcat:any;
+  bart:any;
   show2:any= true;
   show3:any=true;
   disp:boolean=true;
@@ -36,7 +39,9 @@ export class MonthComponent implements OnInit {
     //firstRowIsData: true,
     options: {'title': 'Categoria - Mese', 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
   };
-  constructor(private api:HttpClient) {
+  constructor(private api:HttpClient) {}
+
+  ngOnInit(): void {
 
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/month1.php").subscribe(
       data=>{
@@ -44,6 +49,7 @@ export class MonthComponent implements OnInit {
         var gr = this.incasso.map(function(aux:any){return [aux.nome, parseInt(aux.valore)]})
         gr = [['Negozio', 'Incasso']].concat(gr);
         this.grincasso.dataTable=gr;
+       this.bstore=this.incasso[0].nome;
       }
     )
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/monthart.php").subscribe(
@@ -52,26 +58,24 @@ export class MonthComponent implements OnInit {
         var gr = this.articolo.map(function(aux:any){return [aux.nome, parseInt(aux.pezzi)]})
         gr = [['Articolo', 'Q.ta']].concat(gr);
         this.grarticoli.dataTable=gr;
+        this.bart=this.articolo[0].nome;
       }
     );
     this.api.get("https://cvggold-dash.ns0.it/json/dettagli/monthcat.php").subscribe(
       data=>{
         this.categoria = data
-        console.log(data)
         var gr = this.categoria.map(function(aux:any){return [aux.cat, parseInt(aux.pezzi)]})
         gr = [['Categoria', 'Q.ta']].concat(gr);
         this.grcategoria.dataTable=gr;
-
-        //Grafico Categoria - Settimana
+        this.bcat=this.categoria[0].cat;
       }
     );
-  }
-  ngOnInit(): void {
+
     if(window.innerWidth>450 && window.innerWidth<900)
       this.disp=true;
     if(window.innerWidth<451)
       this.disp=false;
-    else 
+    else
       this.disp=true;
   }
   grafico():void{

@@ -29,3 +29,6 @@ input{
 td{
   font-size: 8px%;
 }
+mat-spinner{
+  margin-left: 45%;
+}

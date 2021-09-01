@@ -24,6 +24,7 @@ export class SvenditeComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
+  show:boolean=false;
   header:string[]=['categoria', 'nome', 'qta', 'tot', 'id'];
   constructor(private api:HttpClient, public detart:MatDialog,private rapi:HttpClient) {
 
@@ -31,6 +32,7 @@ export class SvenditeComponent implements OnInit {
       data=>{
         this.aux = data;
         this.vendite = new MatTableDataSource(this.aux);
+        this.show=!this.show;
 
       }
     );
