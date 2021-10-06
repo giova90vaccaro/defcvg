@@ -18,6 +18,7 @@ d_inizio = new Date();
 d_fine = new Date();
 risposta:any;
 selezione:boolean=false;
+s2:boolean=false;
 h2:string[]=['Cat1', 'TotPz', 'Consegnato','TotEu', 'perc'];
 
 
@@ -28,18 +29,15 @@ constructor(private connessione:HttpClient ) {
   }
 
   vista():void{
-    test:String;
 
     if(this.range.value.start != null || this.range.value.end != null){
       this.d_inizio = this.range.value.start;
       this.d_fine = this.range.value.end;
-      this.selezione = true;
+      this.s2 = !this.s2
       this.returnConn();
     }else{
-      this.selezione=false;
       alert("Inserire la data prima di effettura una ricerca")
     }
-    console.log("test");
     }
 
   returnConn():void{
@@ -47,7 +45,8 @@ constructor(private connessione:HttpClient ) {
       this.connessione.get("https://cvggold-dash.ns0.it/json/index.php?"+datacomp).subscribe(
         data => {
           this.risposta = data;
-          return 1;
+          this.selezione = !this.selezione
+          this.s2 = !this.s2;
         }
       )
  }

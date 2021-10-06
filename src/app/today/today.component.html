@@ -1,28 +1,32 @@
 
 <div *ngIf="disp">
     <div class="card2">
-        <a class="int" >Negozio</a>
-        <div class="container">
+      <mat-spinner *ngIf="shstore"></mat-spinner>
+        <a *ngIf="!shstore" class="int" >Negozio</a>
+        <div *ngIf="!shstore" class="container">
           <a class="cnt">{{negozio}}</a><br>
           <a style="color: red; size: small;">( {{estore| currency:'EUR':true}} )</a>
         </div>
-    </div>
+      </div>
+
     <div class="card2">
-      <a class="int" >Categoria</a>
-      <div class="container">
+      <mat-spinner *ngIf="shcat"></mat-spinner>
+      <a *ngIf="!shcat" class="int" >Categoria</a>
+      <div *ngIf="!shcat" class="container">
         <a class="cnt">{{bcat}}</a><br>
         <a style="color: red; size: small;">( {{ecat | currency:'EUR'}} )</a>
       </div>
   </div>
   <div class="card2">
-    <a class="int" >Articolo</a>
-    <div class="container">
+    <mat-spinner *ngIf="shart"></mat-spinner>
+    <a *ngIf="!shart" class="int" >Articolo</a>
+    <div *ngIf="!shart" class="container">
       <a class="cnt">{{bart}}</a><br>
       <a style="color: red; size: small;">( {{eart | currency:'EUR'}} )</a>
     </div>
 </div>
 <mat-divider></mat-divider>
-<mat-card mat-button class="card">
+<mat-card mat-button>
   <mat-card-title>
     Incassi
     <span style="float: right;">
