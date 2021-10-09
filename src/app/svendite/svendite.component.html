@@ -2,8 +2,8 @@
 <mat-card-title>Ricerca Vendite</mat-card-title>
 <mat-card-subtitle>Ricerca Per Articolo</mat-card-subtitle>
 <mat-card-content>
-<mat-spinner *ngIf="!show"></mat-spinner>
-  <mat-form-field *ngIf="show">
+
+  <mat-form-field *ngIf="!show">
     <mat-label>Ricerca Rapida</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ricerca" #input>
   </mat-form-field>
@@ -20,37 +20,34 @@
     </mat-form-field>
     <button mat-button (click)="rcdata()" ><mat-icon>search</mat-icon></button>
   </div>
-
     <div>
-  <table *ngIf="show" mat-table [dataSource]="vendite">
-
-    <ng-container matColumnDef="categoria">
+      <mat-spinner *ngIf="spinner"></mat-spinner>
+  <table *ngIf="show2" mat-table [dataSource]="vendite">
+    <ng-container matColumnDef="a">
       <th class="row" mat-header-cell *matHeaderCellDef> Categoria </th>
-      <td class="row" mat-cell *matCellDef="let riga"> {{riga.categoria}} </td>
+      <td class="row" mat-cell *matCellDef="let riga"> {{riga.a}} </td>
     </ng-container>
-    <mat-divider [vertical]="true"></mat-divider>
-    <ng-container matColumnDef="nome">
-      <th class="row" mat-header-cell *matHeaderCellDef> Descrizione </th>
-      <td class="row" mat-cell *matCellDef="let riga"> {{riga.nome}} </td>
+    <ng-container matColumnDef="cat1">
+      <th class="row" mat-header-cell *matHeaderCellDef> Sotto Categoria </th>
+      <td class="row" mat-cell *matCellDef="let riga"> {{riga.cat1}} </td>
     </ng-container>
-    <mat-divider [vertical]="true"></mat-divider>
-    <ng-container matColumnDef="qta">
-      <th class="ct" mat-header-cell *matHeaderCellDef> Q.ta </th>
-      <td class="ct" mat-cell *matCellDef="let riga"> {{riga.qta}} </td>
+    <ng-container matColumnDef="b">
+      <th class="row" mat-header-cell *matHeaderCellDef> Codice </th>
+      <td class="row" mat-cell *matCellDef="let riga"> {{riga.b}} </td>
     </ng-container>
-    <mat-divider [vertical]="true"></mat-divider>
-    <ng-container matColumnDef="tot">
-      <th class="ct" mat-header-cell *matHeaderCellDef> Tot.Euro </th>
-      <td class="ct" mat-cell *matCellDef="let riga"> {{riga.tot}} </td>
+    <ng-container matColumnDef="c">
+      <th style="text-align: center;"mat-header-cell *matHeaderCellDef> Consegnato </th>
+      <td style="text-align: center;" mat-cell *matCellDef="let riga"> {{riga.c}} </td>
     </ng-container>
-    <ng-container matColumnDef="id">
-      <th class="ct" mat-header-cell *matHeaderCellDef></th>
-      <td class="ct" mat-cell *matCellDef="let riga">
-        <mat-icon mat-button (click)="openDialog(riga.id)">info</mat-icon> </td>
+    <ng-container matColumnDef="d">
+      <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Venduto </th>
+      <td style="text-align: center;" mat-button *matCellDef="let riga">
+        <button mat-button >
+        {{riga.d}}
+      </button></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="header"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: header"></tr>
-
   </table>
 </div>
 </mat-card-content>

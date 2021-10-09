@@ -15,6 +15,8 @@ import {MatDialog, MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog'
 export class SvenditeComponent implements OnInit {
   aux:any;
   vendite:any;
+  show2:boolean=false;
+  spinner:boolean=false;
   idArt:any;
   r:any;
   checked=false;
@@ -25,17 +27,9 @@ export class SvenditeComponent implements OnInit {
     end: new FormControl()
   });
   show:boolean=false;
-  header:string[]=['categoria', 'nome', 'qta', 'tot', 'id'];
+  header:string[]=['a','cat1', 'b','c', 'd'];
   constructor(private api:HttpClient, public detart:MatDialog,private rapi:HttpClient) {
-
-    this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php").subscribe(
-      data=>{
-        this.aux = data;
-        this.vendite = new MatTableDataSource(this.aux);
-        this.show=!this.show;
-
-      }
-    );
+    this.show=!this.show;
    }
    applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,14 +44,12 @@ export class SvenditeComponent implements OnInit {
   }
   rcdata():void{
     console.log("Ricerca Data");
-
+    this.show2 = false;
+    this.spinner = true;
       this.d_inizio = this.range.value.start;
       this.d_fine = this.range.value.end;
       var inizio = this.d_inizio.toLocaleDateString("en-US")
       var fine = this.d_fine.toLocaleDateString("en-US")
-      console.log(inizio)
-      console.log(fine)
-     // var fine=this.d_fine.getFullYear()+"-"+(this.d_fine.getMonth()+1).toString()+"-"+(this.d_fine.getDate()-1).toString()
 
       const dat="?d1="+inizio+"&d2="+fine;
       this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php"+dat).subscribe(
@@ -65,6 +57,8 @@ export class SvenditeComponent implements OnInit {
           this.aux = data;
           console.log(this.aux)
           this.vendite = new MatTableDataSource(this.aux);
+          this.show2= true;
+          this.spinner = false;
         }
       )
   }
@@ -92,7 +86,6 @@ export class DettArt {
   constructor( @Inject(MAT_DIALOG_DATA) public data:any, private rapi:HttpClient){
 
     this.show=true;
-
     this.rapi.get("https://cvggold-dash.ns0.it/json/setitemes.php?id="+this.data).subscribe(
       rx=>{
         this.art=rx

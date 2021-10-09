@@ -9,26 +9,14 @@ table{
 }
 td.row{
   text-align: left;
-  font-size: 70%;
 }
 tr.row{
   text-align: left;
-  font-size: 70%;
-}
-tr.ct{
-  text-align: center;
-  font-size: 70%;
-}
-td.ct{
-  text-align: center;
-  font-size: 70%;
 }
 input{
   align-items: left;
 }
-td{
-  font-size: 8px%;
-}
+
 mat-spinner{
   margin-left: 45%;
 }
