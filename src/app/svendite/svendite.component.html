@@ -16,14 +16,6 @@
   </div>
     <div>
       <mat-spinner *ngIf="spinner"></mat-spinner>
-      <mat-button-toggle-group *ngIf="show2" #group="matButtonToggleGroup" value="numerico">
-        <mat-button-toggle value="numerico" aria-label="Text align left">
-          <mat-icon>numbers</mat-icon>
-        </mat-button-toggle>
-        <mat-button-toggle value="percentuale" aria-label="Text align center">
-          <mat-icon>percent</mat-icon>
-        </mat-button-toggle>
-      </mat-button-toggle-group>
       <mat-form-field *ngIf="show2" class="formfild" style="margin-right:28%;">
         <mat-label>Categoria</mat-label>
         <input matInput (keyup)="applyFilterCat($event)" placeholder="Ricerca" #input>
@@ -32,7 +24,7 @@
         <mat-label>Codice</mat-label>
         <input matInput (keyup)="applyFilterCod($event)" placeholder="Ricerca" #input>
       </mat-form-field>
-  <table *ngIf="show2" mat-table [dataSource]="vendite">
+  <table *ngIf="show2" mat-table [dataSource]="vendite" matSort>
     <ng-container matColumnDef="a">
       <th class="row" mat-header-cell *matHeaderCellDef> Categoria </th>
       <td class="row" mat-cell *matCellDef="let riga"> {{riga.a}} </td>
@@ -46,7 +38,7 @@
       <td class="row" mat-cell *matCellDef="let riga" #codart> {{riga.b}} </td>
     </ng-container>
     <ng-container matColumnDef="c">
-      <th style="text-align: center;width: 5%;"mat-header-cell *matHeaderCellDef> In </th>
+      <th style="text-align: center;width: 5%;"mat-header-cell *matHeaderCellDef mat-sort-header> In </th>
       <td style="text-align: center;width: 5%;" mat-cell *matCellDef="let riga">
         <button mat-button (click)="openDialog(riga.b, 2)">
           {{riga.c}}
@@ -54,14 +46,19 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="d">
-      <th style="text-align: center;width:5%;" mat-header-cell *matHeaderCellDef> Out </th>
-      <td style="text-align: center;width:5%;" *matCellDef="let riga">
+      <th style="text-align: center;" mat-header-cell *matHeaderCellDef mat-sort-header> Out </th>
+      <td style="text-align: center;" *matCellDef="let riga">
         <button mat-button (click)="openDialog(riga.b, 3)">
         {{riga.d}}
       </button></td>
     </ng-container>
+    <ng-container matColumnDef="perc">
+      <th style="text-align: center;" mat-header-cell *matHeaderCellDef mat-sort-header> % </th>
+      <td style="text-align: center;" *matCellDef="let riga">
+        {{(100*riga.d)/riga.c | number:'1.2-2'}} %
+    </ng-container>
     <ng-container matColumnDef="par">
-      <th style="text-align: center;width:5%;" mat-header-cell *matHeaderCellDef> info </th>
+      <th style="text-align: center;width:5%;" mat-header-cell *matHeaderCellDef > info </th>
       <td style="text-align: center;width:5%;" mat-cell  *matCellDef="let riga">
         <button mat-button (click)="openDialog(riga.b, 1)">
             <mat-icon>more_vert</mat-icon>

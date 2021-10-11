@@ -34,7 +34,13 @@ export class SvenditeComponent implements OnInit {
     end: new FormControl()
   });
   show:boolean=false;
-  header:string[]=['a','cat1', 'b','c', 'd', 'par'];
+  header:string[]=['a','cat1', 'b','c', 'd', 'perc','par'];
+
+
+  @ViewChild(MatSort, { static: false }) set sort(value: MatSort) {
+    this.vendite.sort = value;
+  }
+
   constructor(private api:HttpClient, public detart:MatDialog,private rapi:HttpClient) {
     this.show=!this.show;
    }
@@ -47,9 +53,9 @@ export class SvenditeComponent implements OnInit {
     this.vendite.filter = filterValue.trim().toLowerCase();
     console.log(this.vendite.filter);
   }
-  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
   }
+
   rcdata():void{
     console.log("Ricerca Data");
     this.show2 = false;
