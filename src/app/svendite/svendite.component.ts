@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 export interface Element {
   a: string;
@@ -40,6 +41,9 @@ export class SvenditeComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) set sort(value: MatSort) {
     this.vendite.sort = value;
   }
+  @ViewChild(MatPaginator, {static:false}) set paginator (value : MatPaginator){
+    this.vendite.paginator = value;
+  }
 
   constructor(private api:HttpClient, public detart:MatDialog,private rapi:HttpClient) {
     this.show=!this.show;
@@ -51,7 +55,6 @@ export class SvenditeComponent implements OnInit {
   applyFilterCod(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.vendite.filter = filterValue.trim().toLowerCase();
-    console.log(this.vendite.filter);
   }
   ngOnInit(): void {
   }
@@ -70,8 +73,8 @@ export class SvenditeComponent implements OnInit {
       this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php"+dat).subscribe(
         data=>{
           this.aux = data;
-          console.log(this.aux)
           this.vendite = new MatTableDataSource(this.aux);
+          console.log(this.vendite)
           this.show2= true;
           this.spinner = false;
         }
