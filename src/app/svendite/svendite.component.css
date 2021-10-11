@@ -9,9 +9,11 @@ table{
 }
 td.row{
   text-align: left;
+  width: 30%;
 }
 tr.row{
   text-align: left;
+  width: 30%;
 }
 input{
   align-items: left;
@@ -19,4 +21,13 @@ input{
 
 mat-spinner{
   margin-left: 45%;
+}
+.formfild{
+  margin-left: 1%;
+  float: left;
+  align-items: left;
+  width: 25%;
+}
+mat-button-toggle-group{
+  margin-left: 5%;
 }

@@ -2,12 +2,6 @@
 <mat-card-title>Ricerca Vendite</mat-card-title>
 <mat-card-subtitle>Ricerca Per Articolo</mat-card-subtitle>
 <mat-card-content>
-
-  <mat-form-field *ngIf="!show">
-    <mat-label>Ricerca Rapida</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ricerca" #input>
-  </mat-form-field>
-  <br>
   <div *ngIf="show">
   <mat-form-field appearance="fill">
     <mat-label>Inserimento Date</mat-label>
@@ -22,6 +16,22 @@
   </div>
     <div>
       <mat-spinner *ngIf="spinner"></mat-spinner>
+      <mat-button-toggle-group *ngIf="show2" #group="matButtonToggleGroup" value="numerico">
+        <mat-button-toggle value="numerico" aria-label="Text align left">
+          <mat-icon>numbers</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="percentuale" aria-label="Text align center">
+          <mat-icon>percent</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field *ngIf="show2" class="formfild" style="margin-right:28%;">
+        <mat-label>Categoria</mat-label>
+        <input matInput (keyup)="applyFilterCat($event)" placeholder="Ricerca" #input>
+      </mat-form-field>
+      <mat-form-field *ngIf="show2" class="formfild" >
+        <mat-label>Codice</mat-label>
+        <input matInput (keyup)="applyFilterCod($event)" placeholder="Ricerca" #input>
+      </mat-form-field>
   <table *ngIf="show2" mat-table [dataSource]="vendite">
     <ng-container matColumnDef="a">
       <th class="row" mat-header-cell *matHeaderCellDef> Categoria </th>
@@ -33,18 +43,30 @@
     </ng-container>
     <ng-container matColumnDef="b">
       <th class="row" mat-header-cell *matHeaderCellDef> Codice </th>
-      <td class="row" mat-cell *matCellDef="let riga"> {{riga.b}} </td>
+      <td class="row" mat-cell *matCellDef="let riga" #codart> {{riga.b}} </td>
     </ng-container>
     <ng-container matColumnDef="c">
-      <th style="text-align: center;"mat-header-cell *matHeaderCellDef> Consegnato </th>
-      <td style="text-align: center;" mat-cell *matCellDef="let riga"> {{riga.c}} </td>
+      <th style="text-align: center;width: 5%;"mat-header-cell *matHeaderCellDef> In </th>
+      <td style="text-align: center;width: 5%;" mat-cell *matCellDef="let riga">
+        <button mat-button (click)="openDialog(riga.b, 2)">
+          {{riga.c}}
+        </button>
+      </td>
     </ng-container>
     <ng-container matColumnDef="d">
-      <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Venduto </th>
-      <td style="text-align: center;" mat-button *matCellDef="let riga">
-        <button mat-button >
+      <th style="text-align: center;width:5%;" mat-header-cell *matHeaderCellDef> Out </th>
+      <td style="text-align: center;width:5%;" *matCellDef="let riga">
+        <button mat-button (click)="openDialog(riga.b, 3)">
         {{riga.d}}
       </button></td>
+    </ng-container>
+    <ng-container matColumnDef="par">
+      <th style="text-align: center;width:5%;" mat-header-cell *matHeaderCellDef> info </th>
+      <td style="text-align: center;width:5%;" mat-cell  *matCellDef="let riga">
+        <button mat-button (click)="openDialog(riga.b, 1)">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="header"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: header"></tr>

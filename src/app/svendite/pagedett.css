@@ -1,0 +1,19 @@
+p{
+  text-align: center;
+  font-size: x-large;
+}
+.conteiner{
+  width: 98%;
+  align-items: center;
+  border:3px solid green;
+}
+.space-foto{
+  width: 50%;
+  float: left;
+
+}
+.space-data{
+  width: 50%;
+  float: left;
+
+}

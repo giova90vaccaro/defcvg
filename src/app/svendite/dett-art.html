@@ -1,20 +1,14 @@
-<mat-spinner *ngIf="show"></mat-spinner>
-<div align="center" *ngIf="!show">
-  <table width="80%">
-    <tr>
-      <th colspan="3"><img style="width: 100px;" src="{{src}}"></th>
-    </tr>
-    <tr>
-      <th>Negozio</th>
-      <th>Venduto</th>
-      <th>Consegnato</th>
-    </tr>
-    <tr *ngFor="let x of art">
-      <td align="center">{{x.nome}}</td>
-      <td align="center">{{x.venduto}}</td>
-      <td align="center">{{x.consegnato}}</td>
-    </tr>
-  </table>
-</div>
+<p>Articolo: {{data}}</p>
 
-
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Codifica">
+      <div class="space-foto">
+        foto
+      </div>
+      <div class="space-data">
+        anaGrafica
+      </div>
+  </mat-tab>
+  <mat-tab label="Consegnato">Consegnato</mat-tab>
+  <mat-tab label="Vendite">Venduto</mat-tab>
+</mat-tab-group>

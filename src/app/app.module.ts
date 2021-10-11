@@ -11,7 +11,7 @@ import { WeekComponent } from './week/week.component';
 import { MonthComponent } from './month/month.component';
 import { StartComponent } from './start/start.component';
 import { SerchitemssComponent,DialogContentExampleDialog } from './serchitemss/serchitemss.component';
-import { SvenditeComponent,DettArt } from './svendite/svendite.component';
+import { SvenditeComponent,DettArt, Consegnato, Venduto } from './svendite/svendite.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -34,6 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSortModule } from '@angular/material/sort';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -47,13 +49,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     SvenditeComponent,
     VcategoriaComponent,
     DettArt,
+    Consegnato,
+    Venduto,
     DettPage,
     DettPageArt,
     DettPageCat,
     StoreComponent,
     DialogContentExampleDialog
   ],
-  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog],
+  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -79,7 +83,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSelectModule,
     MatExpansionModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule,
+    MatButtonToggleModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,16 +5,23 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
-
+export interface Element {
+  a: string;
+  cat1: string;
+  b: string;
+  c: number;
+  d:number;
+}
 @Component({
   selector: 'app-svendite',
   templateUrl: './svendite.component.html',
   styleUrls: ['./svendite.component.css']
 })
+
 export class SvenditeComponent implements OnInit {
+
   aux:any;
-  vendite:any;
+  vendite!: MatTableDataSource<Element>;
   show2:boolean=false;
   spinner:boolean=false;
   idArt:any;
@@ -27,19 +34,20 @@ export class SvenditeComponent implements OnInit {
     end: new FormControl()
   });
   show:boolean=false;
-  header:string[]=['a','cat1', 'b','c', 'd'];
+  header:string[]=['a','cat1', 'b','c', 'd', 'par'];
   constructor(private api:HttpClient, public detart:MatDialog,private rapi:HttpClient) {
     this.show=!this.show;
    }
-   applyFilter(event: Event) {
+  applyFilterCat(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.vendite.filter = filterValue.trim().toLowerCase();
-    console.log(filterValue.toString());
+  }
+  applyFilterCod(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.vendite.filter = filterValue.trim().toLowerCase();
+    console.log(this.vendite.filter);
   }
   @ViewChild(MatSort) sort!: MatSort;
-  ngAfterViewInit() {
-    this.vendite.sort = this.sort;
-  }
   ngOnInit(): void {
   }
   rcdata():void{
@@ -52,6 +60,7 @@ export class SvenditeComponent implements OnInit {
       var fine = this.d_fine.toLocaleDateString("en-US")
 
       const dat="?d1="+inizio+"&d2="+fine;
+      console.log(dat)
       this.api.get("https://cvggold-dash.ns0.it/json/venditetd_json.php"+dat).subscribe(
         data=>{
           this.aux = data;
@@ -63,17 +72,36 @@ export class SvenditeComponent implements OnInit {
       )
   }
 
-  openDialog(risposta:string) {
+  openDialog(risposta:string, tipo:number) {
     this.idArt = risposta;
-    const dialogRef = this.detart.open(DettArt, {
-      width: '100%',
-      data : this.idArt
-    });
+    let dialogRef;
+    switch(tipo){
+      case 1:
+        dialogRef = this.detart.open(DettArt, {
+          width: '100%',
+          data : this.idArt
+        });
+        break;
+      case 2:
+        dialogRef = this.detart.open(Consegnato, {
+          width: '100%',
+          data : this.idArt
+        });
+        break;
+      case 3:
+        dialogRef = this.detart.open(Venduto, {
+          width: '100%',
+          data : this.idArt
+        });
+        break;
+    }
+
   }
 }
 @Component({
   selector: 'dett-art',
   templateUrl: 'dett-art.html',
+  styleUrls: ['./pagedett.css']
 })
 export class DettArt {
 
@@ -84,16 +112,29 @@ export class DettArt {
   src="https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="
 
   constructor( @Inject(MAT_DIALOG_DATA) public data:any, private rapi:HttpClient){
-
-    this.show=true;
-    this.rapi.get("https://cvggold-dash.ns0.it/json/setitemes.php?id="+this.data).subscribe(
-      rx=>{
-        this.art=rx
-        this.src = this.src+this.art[0].codiceArticolo;
-        this.show=false;
-
-      }
-    )
   }
+
+}
+@Component({
+  selector:'consegnato',
+  templateUrl:'consegnato.html',
+  styleUrls: ['./pagedett.css']
+})
+
+export class Consegnato{
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
+
+}
+
+@Component({
+  selector:'venduto',
+  templateUrl:'venduto.html',
+  styleUrls: ['./pagedett.css']
+})
+
+export class Venduto{
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
 
 }
