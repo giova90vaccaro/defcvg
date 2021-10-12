@@ -23,6 +23,7 @@ p{
 }
 table{
   width: 100%;
+  overflow: auto
 }
 .detphoto{
   width: 35%;

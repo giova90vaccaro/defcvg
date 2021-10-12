@@ -148,7 +148,7 @@ export class Venduto{
   url= "https://cvggold-dash.ns0.it/json/newdett/reportstoreitems.php?art=";
   progressivbar=true;
   img="https://cvggold-dash.ns0.it/json/newdett/imgjson.php?art="
-  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc']
+  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc', 'Rim']
   negozi:any;
   struttura = 0;
     constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient, public detart:MatDialog){
@@ -181,19 +181,22 @@ export class Venduto{
 
 export class Tagliacolore{
 
+  @ViewChild(MatPaginator, {static:false}) set paginator (value : MatPaginator){
+    this.tgcl.paginator = value;
+  }
+
   url="https://cvggold-dash.ns0.it/json/newdett/tagliacolore.php?art=";
   tgcl:any;
+  show=false;
   header = ['iDNegozio','taglia','colore', 'Vendita', 'Consegato', 'Reso', 'Inviato']
   constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){
 
     this.api.get(this.url+data).subscribe(
       data=>{
-        console.log(data)
         this.tgcl = data
+        this.show = true;
       })
   }
-  @ViewChild(MatPaginator, {static:false}) set paginator (value : MatPaginator){
-    this.tgcl.paginator = value;
-  }
+
 
 }
