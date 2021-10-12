@@ -87,19 +87,19 @@ export class SvenditeComponent implements OnInit {
     switch(tipo){
       case 1:
         dialogRef = this.detart.open(DettArt, {
-          width: '100%',
+          width: '110%',
           data : this.idArt
         });
         break;
       case 2:
         dialogRef = this.detart.open(Consegnato, {
-          width: '100%',
+          width: '110%',
           data : this.idArt
         });
         break;
       case 3:
         dialogRef = this.detart.open(Venduto, {
-          width: '100%',
+          width: '110%',
           data : this.idArt
         });
         break;
@@ -120,7 +120,7 @@ export class DettArt {
   art!:any
   src="https://cvggold-dash.ns0.it/json/dettagli/imgjson.php?art="
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data:any, private rapi:HttpClient){
+  constructor( @Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){
   }
 
 }
@@ -132,7 +132,8 @@ export class DettArt {
 
 export class Consegnato{
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){}
 
 }
 
@@ -144,6 +145,55 @@ export class Consegnato{
 
 export class Venduto{
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
+  url= "https://cvggold-dash.ns0.it/json/newdett/reportstoreitems.php?art=";
+  progressivbar=true;
+  img="https://cvggold-dash.ns0.it/json/newdett/imgjson.php?art="
+  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc']
+  negozi:any;
+  struttura = 0;
+    constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient, public detart:MatDialog){
+      this.img = this.img+data;
+      this.api.get(this.url+data).subscribe(
+        data=>{
+          console.log(data)
+          this.negozi = data;
+          this.struttura = this.negozi[0].tagliacolore;
+          this.progressivbar = !this.progressivbar
+
+        }
+      )
+    }
+    openDetTagliacolore(){
+      let dialogRef;
+      console.log("Tentativo")
+      dialogRef = this.detart.open(Tagliacolore, {
+        width: '80%',
+        data : this.data
+      });
+    }
+
+}
+@Component({
+  selector:'tagliacolore',
+  templateUrl:'tagliacolore.html',
+  styleUrls: ['./pagedett.css']
+})
+
+export class Tagliacolore{
+
+  url="https://cvggold-dash.ns0.it/json/newdett/tagliacolore.php?art=";
+  tgcl:any;
+  header = ['iDNegozio','taglia','colore', 'Vendita', 'Consegato', 'Reso', 'Inviato']
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){
+
+    this.api.get(this.url+data).subscribe(
+      data=>{
+        console.log(data)
+        this.tgcl = data
+      })
+  }
+  @ViewChild(MatPaginator, {static:false}) set paginator (value : MatPaginator){
+    this.tgcl.paginator = value;
+  }
 
 }

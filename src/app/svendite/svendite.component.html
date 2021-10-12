@@ -15,7 +15,7 @@
     <button mat-button (click)="rcdata()" ><mat-icon>search</mat-icon></button>
   </div>
     <div>
-      <mat-spinner *ngIf="spinner"></mat-spinner>
+      <mat-progress-bar *ngIf="spinner" mode="query"></mat-progress-bar>
       <mat-form-field *ngIf="show2" class="formfild" style="margin-right:28%;">
         <mat-label>Categoria OR Cod.Art</mat-label>
         <input matInput (keyup)="applyFilterCat($event)" placeholder="Ricerca" #input>
@@ -65,7 +65,6 @@
     <tr mat-header-row *matHeaderRowDef="header"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: header"></tr>
   </table>
-
 </div>
 </mat-card-content>
 </mat-card>

@@ -1,6 +1,6 @@
 p{
   text-align: center;
-  font-size: x-large;
+  font-size: large;
 }
 .conteiner{
   width: 98%;
@@ -16,4 +16,21 @@ p{
   width: 50%;
   float: left;
 
+}
+.det{
+  width: 60%;
+  float: right;
+}
+table{
+  width: 100%;
+}
+.detphoto{
+  width: 35%;
+  float: right;
+  align-content: center;
+}
+img{
+  border-radius: 10%;
+  object-fit: cover;
+  margin-right: 3%;
 }

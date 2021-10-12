@@ -11,7 +11,7 @@ import { WeekComponent } from './week/week.component';
 import { MonthComponent } from './month/month.component';
 import { StartComponent } from './start/start.component';
 import { SerchitemssComponent,DialogContentExampleDialog } from './serchitemss/serchitemss.component';
-import { SvenditeComponent,DettArt, Consegnato, Venduto } from './svendite/svendite.component';
+import { SvenditeComponent,DettArt, Consegnato, Venduto, Tagliacolore } from './svendite/svendite.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -35,8 +35,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSortModule } from '@angular/material/sort';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -52,13 +53,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DettArt,
     Consegnato,
     Venduto,
+    Tagliacolore,
     DettPage,
     DettPageArt,
     DettPageCat,
     StoreComponent,
     DialogContentExampleDialog
   ],
-  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto],
+  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -87,7 +89,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatToolbarModule,
     MatSortModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressBarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

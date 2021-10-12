@@ -1,2 +1,43 @@
-<p>Venduto</p>
-{{data}}
+
+<div style="width: 100%;">
+  <p>Venduto : {{data}}</p>
+<button *ngIf="struttura" mat-button (click)="openDetTagliacolore()" style="float: right;"><mat-icon>accessibility</mat-icon></button>
+</div>
+<br><br>
+<mat-progress-bar *ngIf="progressivbar" mode="query"></mat-progress-bar>
+<div  *ngIf="!progressivbar" class="det">
+  <table mat-table [dataSource]="negozi" class="mat-elevation-z8">
+    <ng-container matColumnDef="iDNegozio">
+      <th mat-header-cell *matHeaderCellDef> Negozio </th>
+      <td mat-cell *matCellDef="let element"> {{element.iDNegozio}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Venduto">
+      <th mat-header-cell *matHeaderCellDef> Venduto </th>
+      <td mat-cell *matCellDef="let element"> {{element.Venduto}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Ricevuto">
+      <th mat-header-cell *matHeaderCellDef> Ricevuto </th>
+      <td mat-cell *matCellDef="let element"> {{element.Ricevuto}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Reso">
+      <th mat-header-cell *matHeaderCellDef> Reso </th>
+      <td mat-cell *matCellDef="let element"> {{element.Reso}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Inviato">
+      <th mat-header-cell *matHeaderCellDef> Inviato </th>
+      <td mat-cell *matCellDef="let element"> {{element.Inviato}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Prc">
+      <th mat-header-cell *matHeaderCellDef> % </th>
+      <td mat-cell *matCellDef="let element" style="color: red;">
+        {{(100*(element.Venduto-element.Reso))/(element.Ricevuto-element.Inviato) | number:'1.2-2'}} %
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="header"></tr>
+    <tr mat-row *matRowDef="let row; columns: header;"></tr>
+  </table>
+</div>
+<div class="detphoto" *ngIf="!progressivbar">
+  <img src="{{img}}" style="width: 95%;">
+</div>
+<br>
