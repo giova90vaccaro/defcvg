@@ -157,18 +157,24 @@ export class Venduto{
   url= "https://cvggold-dash.ns0.it/json/newdett/reportstoreitems.php?art=";
   progressivbar=true;
   img="https://cvggold-dash.ns0.it/json/newdett/imgjson.php?art="
-  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc', 'Rim']
+  urlgg = "https://cvggold-dash.ns0.it/json/newdett/creazione.php?art=";
+  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc', 'Rim', 'G']
   negozi:any;
+  giorni:any;
   struttura = 0;
     constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient, public detart:MatDialog){
       this.img = this.img+data;
+      this.api.get(this.urlgg+data).subscribe(
+        data=>{
+          this.giorni = data;
+          console.log(data)
+        }
+      )
       this.api.get(this.url+data).subscribe(
         data=>{
-          console.log(data)
           this.negozi = data;
           this.struttura = this.negozi[0].tagliacolore;
           this.progressivbar = !this.progressivbar
-
         }
       )
     }
@@ -200,13 +206,22 @@ export class Tagliacolore{
   url="https://cvggold-dash.ns0.it/json/newdett/retcolore.php?art=";
   url2="https://cvggold-dash.ns0.it/json/newdett/rettaglia.php?art=";
   urlTagliacolore = "https://cvggold-dash.ns0.it/json/newdett/tagliacolore.php?art=";
+  urlgg = "https://cvggold-dash.ns0.it/json/newdett/creazione.php?art=";
 
+  giornic:any;
   tgcl:any;
   show=false;
   listcolor:any
   listtaglia:any;
   lista:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){
+
+    this.api.get(this.urlgg+data).subscribe(
+      data=>{
+        this.giornic = data;
+        console.log(this.giornic.gg)
+      }
+    )
 
     this.api.get(this.url+data).subscribe(
       data=>{
@@ -228,11 +243,6 @@ export class Tagliacolore{
   }
 
   ctrtagliacolore(a:string, b:string, c:string, d:string):boolean{
-
-    //console.log(a)
-    //console.log(b)
-    //console.log(c)
-    //console.log(d)
     if(a == c && b == d)
       return true
     else
