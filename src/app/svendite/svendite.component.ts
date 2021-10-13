@@ -87,19 +87,28 @@ export class SvenditeComponent implements OnInit {
     switch(tipo){
       case 1:
         dialogRef = this.detart.open(DettArt, {
-          width: '110%',
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          height: '90%',
+          width: '90%',
           data : this.idArt
         });
         break;
       case 2:
         dialogRef = this.detart.open(Consegnato, {
-          width: '110%',
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          height: '90%',
+          width: '90%',
           data : this.idArt
         });
         break;
       case 3:
         dialogRef = this.detart.open(Venduto, {
-          width: '110%',
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          height: '90%',
+          width: '90%',
           data : this.idArt
         });
         break;
@@ -167,6 +176,9 @@ export class Venduto{
       let dialogRef;
       console.log("Tentativo")
       dialogRef = this.detart.open(Tagliacolore, {
+        maxWidth: '80vw',
+        maxHeight: '80vh',
+        height: '98%',
         width: '80%',
         data : this.data
       });
@@ -176,7 +188,7 @@ export class Venduto{
 @Component({
   selector:'tagliacolore',
   templateUrl:'tagliacolore.html',
-  styleUrls: ['./pagedett.css']
+  styleUrls: ['./tagliacolore.css']
 })
 
 export class Tagliacolore{
@@ -185,17 +197,46 @@ export class Tagliacolore{
     this.tgcl.paginator = value;
   }
 
-  url="https://cvggold-dash.ns0.it/json/newdett/tagliacolore.php?art=";
+  url="https://cvggold-dash.ns0.it/json/newdett/retcolore.php?art=";
+  url2="https://cvggold-dash.ns0.it/json/newdett/rettaglia.php?art=";
+  urlTagliacolore = "https://cvggold-dash.ns0.it/json/newdett/tagliacolore.php?art=";
+
   tgcl:any;
   show=false;
-  header = ['iDNegozio','taglia','colore', 'Vendita', 'Consegato', 'Reso', 'Inviato']
+  listcolor:any
+  listtaglia:any;
+  lista:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data:any, private api:HttpClient){
 
     this.api.get(this.url+data).subscribe(
       data=>{
-        this.tgcl = data
-        this.show = true;
+        this.listcolor = data
+        console.log(data)
       })
+      this.api.get(this.url2+data).subscribe(
+        data=>{
+          this.listtaglia = data
+          console.log(data)
+        })
+      this.api.get(this.urlTagliacolore+data).subscribe(
+        data=>{
+          this.lista = data
+          console.log(this.lista)
+          this.show=true;
+        }
+      )
+  }
+
+  ctrtagliacolore(a:string, b:string, c:string, d:string):boolean{
+
+    //console.log(a)
+    //console.log(b)
+    //console.log(c)
+    //console.log(d)
+    if(a == c && b == d)
+      return true
+    else
+      return false
   }
 
 

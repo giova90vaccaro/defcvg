@@ -50,9 +50,12 @@ th{
   position:relative;
   margin-top: 70%;
   }
-a{
+.tbl{
   width: 100%;
 }
-.tbl{
+td{
+  width: 25%;
+}
+tr{
   width: 100%;
 }

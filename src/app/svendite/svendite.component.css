@@ -31,3 +31,10 @@ mat-spinner{
 mat-button-toggle-group{
   margin-left: 5%;
 }
+th{
+  position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+}
