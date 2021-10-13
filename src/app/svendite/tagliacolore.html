@@ -5,39 +5,62 @@
       Taglia
       <mat-tab *ngFor="let y of listtaglia"  label={{y.Taglia}}>
         <div>
-            <div class="tbl">
+            <table>
               <tr>
-                <td>
+                <th>
                   Negozio
-                </td>
-                <td>
+                </th>
+                <th>
                   Taglia
-                </td>
-                <td>
+                </th>
+                <th>
                   Colore
-                </td>
-                <td>
+                </th>
+                <th>
                   Consegnato
-                </td>
+                </th>
+                <th>
+                  Inviato
+                </th>
+                <th>
+                  Venduto
+                </th>
+                <th>
+                  Reso
+                </th>
+                <th>
+                  Giacenza
+                </th>
               </tr>
-              <div  *ngFor="let l of lista" >
-                <tr *ngIf="ctrtagliacolore(l.colore, l.taglia, x.colore, y.Taglia)">
+             <ng-container *ngFor="let l of lista">
+                <tr  *ngIf="ctrtagliacolore(l.colore, l.taglia, x.colore, y.Taglia)">
                   <td>
                     {{l.iDNegozio}}
                   </td>
-                  <td>
+                  <td style="text-align: center;">
                     {{l.taglia}}
                   </td>
-                  <td>
+                  <td style="text-align: center;">
                     {{l.colore}}
                   </td>
-                  <td>
-                    {{l.Consegnato}}
+                  <td style="text-align: center;">
+                    {{l.Consegato}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{l.Inviato}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{l.Vendita}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{l.Reso}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{(l.Consegato-l.Inviato)-(l.Vendita-l.Reso)}}
                   </td>
                 </tr>
-              </div>
-
-            </div>
+              </ng-container>
+            </table>
         </div>
       </mat-tab>
     </mat-tab-group>
