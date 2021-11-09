@@ -41,7 +41,9 @@ constructor(private connessione:HttpClient ) {
     }
 
   returnConn():void{
-      const datacomp="d1="+this.d_inizio.toISOString()+"&d2="+this.d_fine.toISOString();
+      const datacomp="d1="+this.d_inizio.toLocaleDateString()+"&d2="+this.d_fine.toLocaleDateString();
+      console.log(datacomp);
+      console.log("https://cvggold-dash.ns0.it/json/index.php?"+datacomp);
       this.connessione.get("https://cvggold-dash.ns0.it/json/index.php?"+datacomp).subscribe(
         data => {
           this.risposta = data;

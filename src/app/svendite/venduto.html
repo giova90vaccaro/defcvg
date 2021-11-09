@@ -16,7 +16,7 @@
       <td mat-cell *matCellDef="let element"> {{element.Venduto}} </td>
     </ng-container>
     <ng-container matColumnDef="Ricevuto">
-      <th mat-header-cell *matHeaderCellDef> Ricevuto </th>
+      <th mat-header-cell *matHeaderCellDef> Consegnato</th>
       <td mat-cell *matCellDef="let element"> {{element.Ricevuto}} </td>
     </ng-container>
     <ng-container matColumnDef="Reso">
@@ -52,8 +52,4 @@
 <div class="detphoto" *ngIf="!progressivbar">
   <img src="{{img}}" style="width: 95%;">
 </div>
-<br>
-<br>
-<div class="foother">
-  Taglia
-</div>
+

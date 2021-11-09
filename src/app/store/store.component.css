@@ -1,8 +1,7 @@
 mat-card{
-  margin-top: 3%;
-  width: 90%;
+  margin-top: 0.5%;
+  width: 98%;
   align-content: center;
-  margin-left: 3%;
 }
 mat-card-title{
 text-align: left;

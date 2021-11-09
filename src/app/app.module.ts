@@ -28,7 +28,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { StoreComponent } from './store/store.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -38,6 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCheckboxModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    Ng2GoogleChartsModule,
     MatSelectModule,
     MatExpansionModule,
     MatSnackBarModule,
@@ -90,7 +89,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatSortModule,
     MatButtonToggleModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    GoogleChartsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

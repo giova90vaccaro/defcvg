@@ -7,33 +7,15 @@
         <div>
             <table>
               <tr>
-                <th>
-                  Negozio
-                </th>
-                <th>
-                  Taglia
-                </th>
-                <th>
-                  Colore
-                </th>
-                <th>
-                  Consegnato
-                </th>
-                <th>
-                  Inviato
-                </th>
-                <th>
-                  Venduto
-                </th>
-                <th>
-                  Reso
-                </th>
-                <th>
-                  Giacenza
-                </th>
-                <th>
-                  Giorni
-                </th>
+                <th>Negozio</th>
+                <th>Taglia</th>
+                <th>Colore</th>
+                <th>Consegnato</th>
+                <th>Inviato</th>
+                <th>Venduto</th>
+                <th>Reso</th>
+                <th>Giacenza</th>
+                <th>Giorni</th>
               </tr>
              <ng-container *ngFor="let l of lista">
                 <tr  *ngIf="ctrtagliacolore(l.colore, l.taglia, x.colore, y.Taglia)">

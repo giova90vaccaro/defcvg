@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {
+  ChartErrorEvent,ChartMouseLeaveEvent,
+  ChartMouseOverEvent,ChartSelectionChangedEvent,
+  ChartType,Column,
+  GoogleChartComponent
+} from 'angular-google-charts';
 
 @Component({
   selector: 'app-store',
@@ -7,6 +13,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent implements OnInit {
+
+  public char:{
+    title:string;
+    type: ChartType;
+    data:any[][];
+    columns?:Column[];
+    options: {}
+  }[]=[]
 
   store:any;
   negozio:any
@@ -17,7 +31,7 @@ export class StoreComponent implements OnInit {
   h3=['cart', 'dart', 'Venduto', 'Consegnato', 'perc'];
   h2=['cat', 'Venduto', 'Consegnato', 'perc'];
   h1=['Giorno', 'h9', 'h10','h11','h12', 'h13','h14','h15','h16','h17','h19','h20'];
-  
+
   constructor(private api:HttpClient) {
 
       this.api.get("https://cvggold-dash.ns0.it/json/dettagli/store_json.php").subscribe(

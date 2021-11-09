@@ -31,21 +31,6 @@ export class TodayComponent implements OnInit {
   h2:string[]=['codiceArticolo','descrizione', 'TotalQ', 'TotalEu'];
   h3:string[]=['cat', 'qta', 'euro'];
 
-  grincasso: GoogleChartInterface = {
-    chartType: 'PieChart',
-    //firstRowIsData: true,
-    options: {'title': 'Negozio', 'is3D':true, 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
-  };
-  grarticoli: GoogleChartInterface = {
-    chartType: 'PieChart',
-    //firstRowIsData: true,
-    options: {'title': 'Articoli', 'is3D':true, 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
-  };
-  grcategoria: GoogleChartInterface = {
-    chartType: 'PieChart',
-    //firstRowIsData: true,
-    options: {'title': 'Articoli', 'is3D':true, 'align':'left','width':'150%','width_unit':'%', 'height':'400'},
-  };
 
   constructor(private api:HttpClient, public detpag:MatDialog, public detart:MatDialog, public detcat:MatDialog) {}
    openDialogArt(rxart:string):void{
@@ -83,7 +68,6 @@ export class TodayComponent implements OnInit {
         this.incasso=data;
         var gr = this.incasso.map(function(aux:any){return [aux.Negozio, parseInt(aux.Oggi)]})
         gr = [['Negozio', 'Oggi']].concat(gr);
-        this.grincasso.dataTable=gr;
         this.negozio = this.incasso[0].Negozio;
         this.estore = this.incasso[0].Oggi;
         this.shstore = false;
@@ -94,7 +78,6 @@ export class TodayComponent implements OnInit {
         this.articoli=art;
         var gra = this.articoli.map(function(aux:any){ return [aux.codiceArticolo, parseInt(aux.TotalQ)] })
         gra = [['Articolo', 'Q.ta']].concat(gra);
-        this.grarticoli.dataTable=gra;
         this.bart=this.articoli[0].codiceArticolo
         this.eart = this.articoli[0].TotalEu;
         this.shart = false;
@@ -105,7 +88,6 @@ export class TodayComponent implements OnInit {
         this.categoria=cat;
         var grc = this.categoria.map(function(aux:any){ return [aux.cat,parseInt(aux.qta)] })
         grc = [['Categoria', 'Q.ta']].concat(grc);
-        this.grcategoria.dataTable = grc;
         this.bcat = this.categoria[0].cat;
         this.ecat = this.categoria[0].euro;
         this.shcat = false;
