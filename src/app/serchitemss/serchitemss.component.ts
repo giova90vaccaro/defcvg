@@ -102,7 +102,7 @@ export class SerchitemssComponent implements OnInit {
                     this.grafico = true;
                 }
               )
-              this.req3.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamentoSingolo.php").subscribe(
+              this.req3.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamentoSingolo.php?id="this.articolo.id).subscribe(
                 data=>{
                     this.righe2 = data;
                     console.log(this.righe2.length)
