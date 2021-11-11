@@ -2,6 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  ChartErrorEvent,
+  ChartMouseLeaveEvent,
+  ChartMouseOverEvent,
+  ChartSelectionChangedEvent,
+  ChartType,
+  Column,
+  GoogleChartComponent
+} from 'angular-google-charts';
+
 
 @Component({
   selector: 'app-serchitemss',
@@ -22,7 +32,29 @@ export class SerchitemssComponent implements OnInit {
   header:string[]=['Negozio', 'Consegnato', 'Venduti','Perc','Giacenza'];
   nome:any; descrizione:any;madre:any; barcode:any;prezzo:any;cat:any;media:any;
 
-  constructor(public dialog:MatDialog, private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient,private richiesta : HttpClient, private dettart : HttpClient, private doc:HttpClient) { }
+  public char: {
+    title: string;
+    type: ChartType;
+    data: any[][];
+    columns: Column[];
+    options: {};
+  }[] = [];
+  public char2: {
+    title: string;
+    type: ChartType;
+    data: any[][];
+    columns: Column[];
+    options: {};
+  }[] = [];
+  grafico:boolean=false
+  grafico2:boolean=false
+  righe!:any;
+  righe2!:any;
+  testrighe:any[]=[]
+  testrighe2:any[]=[]
+  colonne = ['Week','01 - CVG ASSAGO','02 - CVG GLOBO'	,'03 - CVG PEDRENGO','04 - CVG LIMBIATE','05 - CVG PAVIA','06 - CVG GIUSSANO','07 - CVG AMBIVERE','08 - CVG MAGENTA','09 - CVG VOGHERA','10 - CVG PIACENZA'];
+  colonnastor = ['Week', 'Store']
+  constructor(public dialog:MatDialog, private req2:HttpClient,private req3:HttpClient,private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient,private richiesta : HttpClient, private dettart : HttpClient, private doc:HttpClient) { }
   ngOnInit(): void {
   }
   cerca(x:String):void{
@@ -44,16 +76,68 @@ export class SerchitemssComponent implements OnInit {
         this.cat=this.articolo.cat;
         this.barcode = this.articolo.barcode
         this.prezzo = this.articolo.Prezzo;
+
+        this.req2.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamento.php?id="+this.articolo.id).subscribe(
+                data=>{
+                    this.righe = data;
+                    console.log(this.righe.length)
+                    var i:number
+                      for( i = 0; i< this.righe.length; i++){
+                    let aux=[this.righe[i].Week.toString(), this.righe[i].a, this.righe[i].b, this.righe[i].c, this.righe[i].d, this.righe[i].e, this.righe[i].f, this.righe[i].g, this.righe[i].h, this.righe[i].i, this.righe[i].l];
+                      this.testrighe.push(aux)
+                      }
+                      console.log(this.testrighe)
+
+                    this.char.push({
+                      title: 'AndamentoPerNegozio',
+                      type: ChartType.ComboChart,
+                      columns: this.colonne,
+                      data: this.testrighe,
+                      options: {
+                        vAxis: { title: 'Pz' },
+                        hAxis: { title: 'Week' },
+		                    width: 700
+                      }
+                    });
+                    this.grafico = true;
+                }
+              )
+              this.req3.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamentoSingolo.php").subscribe(
+                data=>{
+                    this.righe2 = data;
+                    console.log(this.righe2.length)
+                    var i:number
+                      for( i = 0; i< this.righe2.length; i++){
+                    let aux=[this.righe2[i].Week.toString(), this.righe2[i].store];
+                      this.testrighe2.push(aux)
+                      }
+                    this.char2.push({
+                      title: 'AndamentoGenerale',
+                      type: ChartType.ComboChart,
+                      columns: this.colonnastor,
+                      data: this.testrighe2,
+                      options: {
+                        vAxis: { title: 'Pz2' },
+                        hAxis: { title: 'Week2' },
+		                    width: 700
+                      }
+                    });
+                    this.grafico2 = true;
+
+                }
+              )
+
+
         this.media = this.articolo.media;
-      }
-    )
-console.log("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+x);
-    this.dettart.get("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+x).subscribe(
+        this.dettart.get("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+this.articolo.id).subscribe(
       data=>{
           this.tabella = data;
           console.log(this.tabella);
       })
+      },
+      error=>{this.messaggio.open('Errore Connessione Controllare i Dati inseriti', 'X'), this.progressive=false}
 
+    )
       this.doc.get("https://cvggold-dash.ns0.it/prodotti/documenti.php?art="+x).subscribe(
         data=>{
             this.documenti = data;
@@ -61,11 +145,10 @@ console.log("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+x);
         }
       );
 
+    }else{
+        this.messaggio.open('Nessun Articolo Inserito', 'X')
     }
   }
-
-
-
   openDialog(par:string) {
     const dialogRef = this.dialog.open(DialogContentExampleDialog,{
       width:'95%',
@@ -106,5 +189,10 @@ export class DialogContentExampleDialog {
     )
 
   }
-
 }
+@Component({
+  selector: 'MessaggioComponent',
+  templateUrl: 'messaggio.html',
+  styleUrls: ['./serchitemss.component.css']
+})
+export class MessaggioComponent {}

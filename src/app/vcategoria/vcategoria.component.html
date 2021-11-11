@@ -12,7 +12,8 @@
   <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
   <button mat-button (click)="vista()"><mat-icon>search</mat-icon></button>
-  <mat-spinner *ngIf="s2"></mat-spinner>
+  <mat-progress-bar *ngIf="s2" mode="buffer"></mat-progress-bar>
+
 <div  *ngIf="selezione">
     <table mat-table [dataSource]="risposta">
       <ng-container matColumnDef="Cat1">

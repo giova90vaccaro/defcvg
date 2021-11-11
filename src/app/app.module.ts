@@ -10,7 +10,7 @@ import { TodayComponent, DettPage,DettPageArt,DettPageCat} from './today/today.c
 import { WeekComponent } from './week/week.component';
 import { MonthComponent } from './month/month.component';
 import { StartComponent } from './start/start.component';
-import { SerchitemssComponent,DialogContentExampleDialog } from './serchitemss/serchitemss.component';
+import { SerchitemssComponent,DialogContentExampleDialog, MessaggioComponent } from './serchitemss/serchitemss.component';
 import { SvenditeComponent,DettArt, Consegnato, Venduto, Tagliacolore } from './svendite/svendite.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,6 +38,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
@@ -58,9 +60,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
     DettPageArt,
     DettPageCat,
     StoreComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    MessaggioComponent
   ],
-  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore],
+  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -90,7 +93,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatButtonToggleModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatGridListModule
     ],
   providers: [],
   bootstrap: [AppComponent]
