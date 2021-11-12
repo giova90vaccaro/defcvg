@@ -7,7 +7,7 @@
     <button mat-icon-button (click)="cerca(articolo.value)"><mat-icon>search</mat-icon></button>
   </div>
 </div>
-<div id="flex" *ngIf="show">
+<div id="flex">
   <div id="barra">
     <mat-progress-bar mode="buffer" *ngIf="progressive"></mat-progress-bar>
   </div>
@@ -67,12 +67,15 @@
           <b>{{vvendita[0].Vendita}} €</b>
         </div>
     </div></div>
-  <div id="c">
+  <div id="c" *ngIf="costob">
     <div class="card">
       <p class="costo">Stock - Store</p>
-        <div class="container">
-         <b>{{cost}}</b>
+        <div class="containerV">
+         <b style="color:coral;">{{cost*media}} €</b>
         </div>
+        <div class="containerV">
+          <b style="color:khaki;">{{cost*prezzo}} €</b>
+         </div>
 </div>
   </div>
 </div>

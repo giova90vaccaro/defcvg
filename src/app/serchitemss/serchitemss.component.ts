@@ -42,6 +42,7 @@ export class SerchitemssComponent implements OnInit {
   public  columns2!: Column[];
   public  options2!: {};
 
+  costob=false;
 
   public   title!: string;
   public   type!: ChartType;
@@ -67,7 +68,6 @@ export class SerchitemssComponent implements OnInit {
     this.show=false;
     if(x){
     this.progressive=true;
-    console.log(x);
     this.foto = this.src+x;
 
     this.cod=x
@@ -114,7 +114,6 @@ export class SerchitemssComponent implements OnInit {
                 data=>{
                   this.testrighe2=[]
                     this.righe2 = data;
-                    console.log(this.righe2.length)
                     var i:number
                       for( i = 0; i< this.righe2.length; i++){
                     var aux=[this.righe2[i].Week.toString(), this.righe2[i].store];
@@ -125,8 +124,8 @@ export class SerchitemssComponent implements OnInit {
                     this.columns= this.colonnastor
                     this.data=this.testrighe2
                     this.options= {
-                        vAxis: { title: 'Pz2' },
-                        hAxis: { title: 'Week2' },
+                        vAxis: { title: 'Pz' },
+                        hAxis: { title: 'Week' },
 		                    width: 700
                       };
                     this.grafico2 = true;
@@ -147,18 +146,19 @@ export class SerchitemssComponent implements OnInit {
 
 
         this.media = this.articolo.media;
-        this.dettart.get(this.url+this.articolo.nome).subscribe(
+    this.dettart.get(this.url+this.articolo.nome).subscribe(
       data=>{
         this.tabella=[];
         this.cost = 0;
           this.tabella = data;
           var i:number
-          var aux:number
+          var aux:number=0;
           this.cost = 0;
             for(i = 0; i<this.tabella.length; i++){
-              aux = Number(((this.tabella[i].Ricevuto-this.tabella[i].VeNduto)+this.tabella[i].Reso)-this.tabella[i].Inviato)
-              this.cost = aux + this.cost
+              aux = Number(((this.tabella[i].Ricevuto-this.tabella[i].Venduto)+this.tabella[i].Reso)-this.tabella[i].Inviato)
+              this.cost = this.cost + aux;
             }
+            this.costob=true;
       })
       },
       error=>{this.messaggio.open('Errore Connessione Controllare i Dati inseriti', 'X'), this.progressive=false}
@@ -197,14 +197,12 @@ export class DialogContentExampleDialog {
     risposta.get("https://cvggold-dash.ns0.it/json/store/store.php?art="+this.data).subscribe(
       x=>{
         this.det = x
-        console.log(this.det)
     })
 
     ana.get("https://cvggold-dash.ns0.it/json/dettagli/item_json.php?x="+data).subscribe(
       fg=>{
         this.itemss=fg;
         this.src = this.src+this.itemss[0].articolo;
-        console.log(this.src)
       }
     )
 
