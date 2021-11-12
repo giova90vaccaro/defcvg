@@ -58,6 +58,7 @@ export class HistorystoreComponent implements OnInit {
     this.req.get("https://cvggold-dash.ns0.it/json/grastoria.php?"+date).subscribe(
       data=>{
         this.grincasso=[]
+        this.righe=[];
         this.grincasso=data;
         var i:number
           for(i=0; i<this.grincasso.length; i++){
