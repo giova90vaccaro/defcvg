@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,6 +23,7 @@ export class SerchitemssComponent implements OnInit {
 
   src="https://cvggold-dash.ns0.it/prodotti/imgdet.php?art="
   url= "https://cvggold-dash.ns0.it/json/newdett/reportstoreitems.php?art="
+  urlvendita= "https://cvggold-dash.ns0.it/json/newdett/valorevendita.php?art="
   foto!:String;
   cod!:String;
   show!:boolean
@@ -32,7 +34,7 @@ export class SerchitemssComponent implements OnInit {
   hdocumenti:string[]=['ragioneSociale', 'data', 'qta', 'numero'];
   header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc', 'Rim']
   nome:any; descrizione:any;madre:any; barcode:any;prezzo:any;cat:any;media:any;
-
+  vvendita!:any;
 
   public  title2!: string;
   public  type2!: ChartType;
@@ -46,7 +48,8 @@ export class SerchitemssComponent implements OnInit {
   public   data!: any[][];
   public   columns!: Column[];
   public  options!: {};
-
+  count=0;
+  cost=0;
   grafico:boolean=false
   grafico2:boolean=false
   righe!:any;
@@ -55,7 +58,7 @@ export class SerchitemssComponent implements OnInit {
   testrighe2:any[]=[]
   colonne = ['Week','01 - CVG ASSAGO','02 - CVG GLOBO'	,'03 - CVG PEDRENGO','04 - CVG LIMBIATE','05 - CVG PAVIA','06 - CVG GIUSSANO','07 - CVG AMBIVERE','08 - CVG MAGENTA','09 - CVG VOGHERA','10 - CVG PIACENZA'];
   colonnastor = ['Week', 'Store']
-  constructor(public dialog:MatDialog, private req2:HttpClient,private req3:HttpClient,private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient,private richiesta : HttpClient, private dettart : HttpClient, private doc:HttpClient) { }
+  constructor(public dialog:MatDialog, private vv: HttpClient,private req2:HttpClient,private req3:HttpClient,private messaggio:MatSnackBar, private api:HttpClient, private dettaglio:HttpClient,private richiesta : HttpClient, private dettart : HttpClient, private doc:HttpClient) { }
   ngOnInit(): void {
   }
   cerca(x:String):void{
@@ -79,19 +82,21 @@ export class SerchitemssComponent implements OnInit {
         this.barcode = this.articolo.barcode
         this.prezzo = this.articolo.Prezzo;
 
+        this.vv.get(this.urlvendita+this.articolo.nome).subscribe(
+          data=>{
+              this.vvendita = data;
+          }
+        )
+
         this.req2.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamento.php?id="+this.articolo.id).subscribe(
                 data=>{
                   this.testrighe= []
                     this.righe = data;
-                    console.log(this.righe.length)
                     var i:number
                       for( i = 0; i< this.righe.length; i++){
                     var aux=[this.righe[i].Week.toString(), this.righe[i].a, this.righe[i].b, this.righe[i].c, this.righe[i].d, this.righe[i].e, this.righe[i].f, this.righe[i].g, this.righe[i].h, this.righe[i].i, this.righe[i].l];
                       this.testrighe.push(aux)
                       }
-                      console.log(this.testrighe)
-
-
                       this.title2= 'AndamentoPerNegozio',
                       this.type2= ChartType.ComboChart,
                       this.columns2= this.colonne,
@@ -132,6 +137,11 @@ export class SerchitemssComponent implements OnInit {
                 data=>{
                   this.documenti =[]
                   this.documenti = data;
+                  var i: number
+                  this.count = 0
+                  for(i = 0; i<this.documenti.length; i++){
+                      this.count = Number(this.documenti[i].qta)+this.count
+                  }
         }
       );
 
@@ -140,8 +150,15 @@ export class SerchitemssComponent implements OnInit {
         this.dettart.get(this.url+this.articolo.nome).subscribe(
       data=>{
         this.tabella=[];
+        this.cost = 0;
           this.tabella = data;
-          console.log(this.tabella);
+          var i:number
+          var aux:number
+          this.cost = 0;
+            for(i = 0; i<this.tabella.length; i++){
+              aux = Number(((this.tabella[i].Ricevuto-this.tabella[i].VeNduto)+this.tabella[i].Reso)-this.tabella[i].Inviato)
+              this.cost = aux + this.cost
+            }
       })
       },
       error=>{this.messaggio.open('Errore Connessione Controllare i Dati inseriti', 'X'), this.progressive=false}

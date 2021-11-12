@@ -55,14 +55,36 @@
   </div>
 </div>
 <div id="flex" *ngIf="show">
-<div id="contenuto">
-  <p class="costo">Foto</p>
-  <img src="{{foto}}">
+  <div id="a"> <div class="card">
+    <p class="costo">Ingresso</p>
+      <div class="containerV">
+       <b style="color:red">{{count*media}} €</b>
+      </div>
+  </div></div>
+  <div id="b"><div class="card">
+    <p class="prezzo">Venduto</p>
+        <div class="containerV">
+          <b>{{vvendita[0].Vendita}} €</b>
+        </div>
+    </div></div>
+  <div id="c">
+    <div class="card">
+      <p class="costo">Stock - Store</p>
+        <div class="container">
+         <b>{{cost}}</b>
+        </div>
 </div>
-<div id="grafici" *ngIf="grafico && grafico2">
-  <div id="flex">
-    <div id="graficiint">
-      <google-chart
+  </div>
+</div>
+<div id="flex" *ngIf="show">
+  <div id="contenuto">
+    <p class="costo">Foto</p>
+    <img src="{{foto}}">
+  </div>
+  <div id="grafici" *ngIf="grafico && grafico2">
+    <div id="flex">
+      <div id="graficiint">
+        <google-chart
       [title]="title2"
       [type]="type2"
       [data]="data2"
