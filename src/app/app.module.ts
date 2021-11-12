@@ -39,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { HistorystoreComponent } from './historystore/historystore.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     DettPageCat,
     StoreComponent,
     DialogContentExampleDialog,
-    MessaggioComponent
+    MessaggioComponent,
+    HistorystoreComponent
   ],
   entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent],
   imports: [

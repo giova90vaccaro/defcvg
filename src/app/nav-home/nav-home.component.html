@@ -13,7 +13,7 @@
         <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
         <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
         <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
-        <a mat-button>Incasso</a>
+        <a mat-button (click)="resetshow()" routerLink="/history" routerLinkActive="active">Incasso - Andamento</a>
         <a mat-button>Saldi</a>
         <a mat-button>Nuovo Articolo</a>
         </mat-toolbar-row>
@@ -33,7 +33,7 @@
           <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active"> Ricerca Articoli</a>
         </mat-toolbar-row>
         <mat-toolbar-row *ngIf="showFiller2">
-          <a mat-button>Incasso</a>
+          <a mat-button (click)="resetshow()" routerLink="/history" routerLinkActive="active">Incasso - Andamento</a>
         </mat-toolbar-row>
         <mat-toolbar-row *ngIf="showFiller2">
           <a mat-button>Saldi</a>

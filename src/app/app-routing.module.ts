@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TodayComponent } from './today/today.component';
 import { StoreComponent } from './store/store.component';
+import { HistorystoreComponent } from './historystore/historystore.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:"sritemss", component:SerchitemssComponent},
   {path:"", component:StartComponent},
   {path:"vendite", component:SvenditeComponent},
-  {path:"categoria", component:VcategoriaComponent}
+  {path:"categoria", component:VcategoriaComponent},
+  {path:"history", component:HistorystoreComponent}
 ];
 
 @NgModule({
