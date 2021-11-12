@@ -21,6 +21,7 @@ import {
 export class SerchitemssComponent implements OnInit {
 
   src="https://cvggold-dash.ns0.it/prodotti/imgdet.php?art="
+  url= "https://cvggold-dash.ns0.it/json/newdett/reportstoreitems.php?art="
   foto!:String;
   cod!:String;
   show!:boolean
@@ -29,7 +30,7 @@ export class SerchitemssComponent implements OnInit {
   tabella:any;
   documenti:any;
   hdocumenti:string[]=['ragioneSociale', 'data', 'qta', 'numero'];
-  header:string[]=['Negozio', 'Consegnato', 'Venduti','Perc','Giacenza'];
+  header = ['iDNegozio', 'Venduto', 'Ricevuto', 'Reso', 'Inviato', 'Prc', 'Rim']
   nome:any; descrizione:any;madre:any; barcode:any;prezzo:any;cat:any;media:any;
 
 
@@ -127,11 +128,18 @@ export class SerchitemssComponent implements OnInit {
 
                 }
               )
+              this.doc.get("https://cvggold-dash.ns0.it/prodotti/documenti.php?art="+this.articolo.id).subscribe(
+                data=>{
+                  this.documenti =[]
+                  this.documenti = data;
+        }
+      );
 
 
         this.media = this.articolo.media;
-        this.dettart.get("https://cvggold-dash.ns0.it/prodotti/tabella.php?art="+this.articolo.id).subscribe(
+        this.dettart.get(this.url+this.articolo.nome).subscribe(
       data=>{
+        this.tabella=[];
           this.tabella = data;
           console.log(this.tabella);
       })
@@ -139,12 +147,6 @@ export class SerchitemssComponent implements OnInit {
       error=>{this.messaggio.open('Errore Connessione Controllare i Dati inseriti', 'X'), this.progressive=false}
 
     )
-      this.doc.get("https://cvggold-dash.ns0.it/prodotti/documenti.php?art="+x).subscribe(
-        data=>{
-            this.documenti = data;
-            console.log(this.documenti);
-        }
-      );
 
     }else{
         this.messaggio.open('Nessun Articolo Inserito', 'X')
