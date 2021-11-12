@@ -32,20 +32,20 @@ export class SerchitemssComponent implements OnInit {
   header:string[]=['Negozio', 'Consegnato', 'Venduti','Perc','Giacenza'];
   nome:any; descrizione:any;madre:any; barcode:any;prezzo:any;cat:any;media:any;
 
-  public char: {
-    title: string;
-    type: ChartType;
-    data: any[][];
-    columns: Column[];
-    options: {};
-  }[] = [];
-  public char2: {
-    title: string;
-    type: ChartType;
-    data: any[][];
-    columns: Column[];
-    options: {};
-  }[] = [];
+
+  public  title2!: string;
+  public  type2!: ChartType;
+  public  data2!: any[][];
+  public  columns2!: Column[];
+  public  options2!: {};
+
+
+  public   title!: string;
+  public   type!: ChartType;
+  public   data!: any[][];
+  public   columns!: Column[];
+  public  options!: {};
+
   grafico:boolean=false
   grafico2:boolean=false
   righe!:any;
@@ -58,14 +58,15 @@ export class SerchitemssComponent implements OnInit {
   ngOnInit(): void {
   }
   cerca(x:String):void{
+    this.grafico=false;
+    this.grafico2=false;
     this.show=false;
     if(x){
     this.progressive=true;
     console.log(x);
     this.foto = this.src+x;
 
-    this.cod=x;
-
+    this.cod=x
     this.richiesta.get("https://cvggold-dash.ns0.it/prodotti/dettarticolo.php?art="+x).subscribe(
       data=>{
         this.articolo=data;
@@ -79,49 +80,49 @@ export class SerchitemssComponent implements OnInit {
 
         this.req2.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamento.php?id="+this.articolo.id).subscribe(
                 data=>{
+                  this.testrighe= []
                     this.righe = data;
                     console.log(this.righe.length)
                     var i:number
                       for( i = 0; i< this.righe.length; i++){
-                    let aux=[this.righe[i].Week.toString(), this.righe[i].a, this.righe[i].b, this.righe[i].c, this.righe[i].d, this.righe[i].e, this.righe[i].f, this.righe[i].g, this.righe[i].h, this.righe[i].i, this.righe[i].l];
+                    var aux=[this.righe[i].Week.toString(), this.righe[i].a, this.righe[i].b, this.righe[i].c, this.righe[i].d, this.righe[i].e, this.righe[i].f, this.righe[i].g, this.righe[i].h, this.righe[i].i, this.righe[i].l];
                       this.testrighe.push(aux)
                       }
                       console.log(this.testrighe)
 
-                    this.char.push({
-                      title: 'AndamentoPerNegozio',
-                      type: ChartType.ComboChart,
-                      columns: this.colonne,
-                      data: this.testrighe,
-                      options: {
+
+                      this.title2= 'AndamentoPerNegozio',
+                      this.type2= ChartType.ComboChart,
+                      this.columns2= this.colonne,
+                      this.data2= this.testrighe,
+                      this.options2= {
                         vAxis: { title: 'Pz' },
                         hAxis: { title: 'Week' },
 		                    width: 700
                       }
-                    });
+
                     this.grafico = true;
                 }
               )
               this.req3.get("https://cvggold-dash.ns0.it/prodotti/GraficoAndamentoSingolo.php?id="+this.articolo.id).subscribe(
                 data=>{
+                  this.testrighe2=[]
                     this.righe2 = data;
                     console.log(this.righe2.length)
                     var i:number
                       for( i = 0; i< this.righe2.length; i++){
-                    let aux=[this.righe2[i].Week.toString(), this.righe2[i].store];
+                    var aux=[this.righe2[i].Week.toString(), this.righe2[i].store];
                       this.testrighe2.push(aux)
                       }
-                    this.char2.push({
-                      title: 'AndamentoGenerale',
-                      type: ChartType.ComboChart,
-                      columns: this.colonnastor,
-                      data: this.testrighe2,
-                      options: {
+                   this.title = "AndamentoGenerale"
+                    this.type= ChartType.ComboChart
+                    this.columns= this.colonnastor
+                    this.data=this.testrighe2
+                    this.options= {
                         vAxis: { title: 'Pz2' },
                         hAxis: { title: 'Week2' },
 		                    width: 700
-                      }
-                    });
+                      };
                     this.grafico2 = true;
 
                 }

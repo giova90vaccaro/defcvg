@@ -1,133 +1,197 @@
-<div class="page">
-  <div class="header">
+<div id="flex">
+  <div id="ricerca">
     <mat-form-field class="ricerca">
       <mat-label>Cod. Articolo</mat-label>
       <input matInput #articolo>
     </mat-form-field>
     <button mat-icon-button (click)="cerca(articolo.value)"><mat-icon>search</mat-icon></button>
   </div>
-
-  <mat-progress-bar mode="buffer" *ngIf="progressive"></mat-progress-bar>
-
-  <br>
-    <div class="cinquanta" *ngIf="show">
-      <div class="card">
-          <p class="int" >Cod. Art</p>
-          <div class="container">
-            <p class="art">{{nome}}</p>
-          </div>
-      </div>
-      <div class="card">
-        <p class="int">Descrizione</p>
-          <div class="container">
-            <p class="art">{{descrizione}}</p>
-          </div>
-      </div>
-      <div class="card">
-        <p class="int">Categoria</p>
-          <div class="container">
-            <p class="art">{{cat}}</p>
-          </div>
-      </div>
-      <div class="card">
-        <p class="int">Alias</p>
-          <div class="container">
-            <p class="art">{{barcode}}</p>
-          </div>
-      </div>
-      <div class="card">
-      <p class="prezzo">Prezzo</p>
-          <div class="container">
-            <p class="part">{{prezzo}} €</p>
-          </div>
-      </div>
-      <div class="card">
-        <p class="costo">Costo</p>
-          <div class="container">
-            <p class="cart">{{media}} €</p>
-          </div>
-      </div>
+</div>
+<div id="flex" *ngIf="show">
+  <div id="barra">
+    <mat-progress-bar mode="buffer" *ngIf="progressive"></mat-progress-bar>
+  </div>
+</div>
+<div id="flex" *ngIf="show">
+  <div id="a"> <div class="card">
+    <p class="int" >Cod. Art</p>
+    <div class="container">
+      {{nome}}
     </div>
-    <div class="cinquanta" *ngIf="show">
-      <div class="cardFoto">
-        <p class="costo">Foto</p>
-          <div class="container">
-            <img src="{{foto}}">
-          </div>
+</div></div>
+  <div id="b"><div class="card">
+    <p class="int">Descrizione</p>
+      <div class="container">
+        {{descrizione}}
       </div>
-    </div>
-    <div class="cinquantanewline" *ngIf="show">
-      <div *ngIf="show">
-        <table mat-table [dataSource]="tabella">
-          <ng-container matColumnDef="Negozio">
-            <th class="row2" mat-header-cell *matHeaderCellDef> Negozio </th>
-            <td class="row2" mat-cell *matCellDef="let riga"> {{riga.Negozio}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Consegnato">
-            <th class="row" mat-header-cell *matHeaderCellDef> Consegnato </th>
-            <td class="row" mat-cell *matCellDef="let riga"> {{riga.Consegnato}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Venduti">
-            <th class="row" mat-header-cell *matHeaderCellDef> Venduti </th>
-            <td class="row" mat-cell *matCellDef="let riga"> {{riga.Venduti}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Perc">
-            <th class="row" mat-header-cell *matHeaderCellDef>%</th>
-            <td class="rowp" mat-cell *matCellDef="let riga">{{riga.Perc}} %</td>
-          </ng-container>
-          <ng-container matColumnDef="Giacenza">
-            <th class="row" mat-header-cell *matHeaderCellDef>Giacenza</th>
-            <td class="row" mat-cell *matCellDef="let riga">{{riga.Giacenza}}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="header"></tr>
-          <tr mat-row *matRowDef="let myRowData; columns: header"></tr>
-        </table>
+  </div></div>
+  <div id="c"> <div class="card">
+    <p class="int">Categoria</p>
+      <div class="container">
+        {{cat}}
       </div>
+  </div></div>
+</div>
+<div id="flex" *ngIf="show">
+  <div id="a"> <div class="card">
+    <p class="int">Alias</p>
+      <div class="container">
+       {{barcode}}
+      </div>
+  </div></div>
+  <div id="b"><div class="card">
+    <p class="prezzo">Prezzo</p>
+        <div class="container">
+          {{prezzo}} €
+        </div>
+    </div></div>
+  <div id="c">
+    <div class="card">
+      <p class="costo">Costo</p>
+        <div class="container">
+         {{media}} €
+        </div>
+</div>
+  </div>
+</div>
+<div id="flex" *ngIf="show">
+<div id="contenuto">
+  <p class="costo">Foto</p>
+  <img src="{{foto}}">
+</div>
+<div id="grafici" *ngIf="grafico && grafico2">
+  <div id="flex">
+    <div id="graficiint">
+      <google-chart
+      [title]="title2"
+      [type]="type2"
+      [data]="data2"
+      [columns]="columns2"
+      [options]="options2"
+      [dynamicResize]="true">
+    </google-chart>
     </div>
-    <div class="cinquantanewlinet" *ngIf="grafico && grafico2">
-          Grafici
-          <google-chart
-
-          [title]="char[0].title"
-          [type]="char[0].type"
-          [data]="char[0].data"
-          [columns]="char[0].columns"
-          [options]="char[0].options"
-          [dynamicResize]="true"
-          >
-        </google-chart>
+    </div>
+    <div id="flex">
+      <div id="graficiint">
         <google-chart
-          [title]="char2[0].title"
-          [type]="char2[0].type"
-          [data]="char2[0].data"
-          [columns]="char2[0].columns"
-          [options]="char2[0].options"
-          [dynamicResize]="true"
-          >
-        </google-chart>
-    </div>
-    <div class="cinquantanewline" *ngIf="show">
-      <div style="width: 100%;height: 200px;float:left; border-radius: 10px;" *ngIf="show">
-        <table mat-table [dataSource]="documenti">
-          <ng-container matColumnDef="ragioneSociale">
-            <th class="row22" mat-header-cell *matHeaderCellDef> Fornitore </th>
-            <td class="row22" mat-cell *matCellDef="let riga"> {{riga.ragioneSociale}} </td>
-          </ng-container>
-          <ng-container matColumnDef="data">
-            <th class="rowf" mat-header-cell *matHeaderCellDef> Data </th>
-            <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.data.date | date:'dd-MM-YYYY'}} </td>
-          </ng-container>
-          <ng-container matColumnDef="qta">
-            <th class="rowf" mat-header-cell *matHeaderCellDef> Q.ta </th>
-            <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.qta}} </td>
-          </ng-container>
-          <ng-container matColumnDef="numero">
-            <th class="rowf" mat-header-cell *matHeaderCellDef>N.Doc</th>
-            <td class="rowf" mat-cell *matCellDef="let riga">{{riga.numero}}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="hdocumenti"></tr>
-          <tr mat-row *matRowDef="let myRowData; columns: hdocumenti"></tr>
-        </table>
+      [title]="title"
+      [type]="type"
+      [data]="data"
+      [columns]="columns"
+      [options]="options"
+      [dynamicResize]="true">
+    </google-chart>
       </div>
     </div>
-    </div>
+</div>
+</div>
+<div id="flex" *ngIf="show">
+  <div id="tabella">
+    <table mat-table [dataSource]="documenti">
+      <ng-container matColumnDef="ragioneSociale">
+        <th class="row22" mat-header-cell *matHeaderCellDef> Fornitore </th>
+        <td class="row22" mat-cell *matCellDef="let riga"> {{riga.ragioneSociale}} </td>
+      </ng-container>
+      <ng-container matColumnDef="data">
+        <th class="rowf" mat-header-cell *matHeaderCellDef> Data </th>
+        <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.data.date | date:'dd-MM-YYYY'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="qta">
+        <th class="rowf" mat-header-cell *matHeaderCellDef> Q.ta </th>
+        <td class="rowf" mat-cell *matCellDef="let riga"> {{riga.qta}} </td>
+      </ng-container>
+      <ng-container matColumnDef="numero">
+        <th class="rowf" mat-header-cell *matHeaderCellDef>N.Doc</th>
+        <td class="rowf" mat-cell *matCellDef="let riga">{{riga.numero}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="hdocumenti"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: hdocumenti"></tr>
+    </table>
+  </div>
+  <div id="tabella" *ngIf="show">
+    <table mat-table [dataSource]="tabella">
+      <ng-container matColumnDef="Negozio">
+        <th class="row2" mat-header-cell *matHeaderCellDef> Negozio </th>
+        <td class="row2" mat-cell *matCellDef="let riga"> {{riga.Negozio}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Consegnato">
+        <th class="row" mat-header-cell *matHeaderCellDef> Consegnato </th>
+        <td class="row" mat-cell *matCellDef="let riga"> {{riga.Consegnato}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Venduti">
+        <th class="row" mat-header-cell *matHeaderCellDef> Venduti </th>
+        <td class="row" mat-cell *matCellDef="let riga"> {{riga.Venduti}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Perc">
+        <th class="row" mat-header-cell *matHeaderCellDef>%</th>
+        <td class="rowp" mat-cell *matCellDef="let riga">{{riga.Perc}} %</td>
+      </ng-container>
+      <ng-container matColumnDef="Giacenza">
+        <th class="row" mat-header-cell *matHeaderCellDef>Giacenza</th>
+        <td class="row" mat-cell *matCellDef="let riga">{{riga.Giacenza}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="header"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: header"></tr>
+    </table>
+  </div>
+  
+</div>
+<!--  
+<div class="headerBeta">
+ 
+</div>
+<div class="page">
+      <br><br><br>
+      <div *ngIf="show" class="cardFoto">
+        <p class="costo">Foto</p>
+            <img src="{{foto}}">
+      </div>
+      <br>
+<div class="cardFoto33" *ngIf="show">
+ 
+
+</div>
+<div class="cardFoto33" *ngIf="show">
+
+  
+</div>
+</div>
+
+<br><br><br>
+<br>
+<br><br><br>
+<br>
+<br>
+<div class="page">
+  <div class="cinquanta3" *ngIf="show">
+    <mat-grid-list cols="4">
+      <mat-grid-tile [colspan]="1"[rowspan]="3">
+        <img src="{{foto}}">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2"[rowspan]="1">
+        <google-chart  *ngIf="grafico && grafico2"
+        [title]="title2"
+        [type]="type2"
+        [data]="data2"
+        [columns]="columns2"
+        [options]="options2"
+        [dynamicResize]="true">
+      </google-chart>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1"[rowspan]="2">tabella</mat-grid-tile>
+      <mat-grid-tile [colspan]="2"[rowspan]="1">
+        <google-chart *ngIf="grafico && grafico2"
+        [title]="title"
+        [type]="type"
+        [data]="data"
+        [columns]="columns"
+        [options]="options"
+        [dynamicResize]="true">
+      </google-chart>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+</div>
+-->
