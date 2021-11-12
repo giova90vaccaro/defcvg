@@ -10,3 +10,45 @@
   </mat-form-field>
   <button mat-icon-button (click)="rdate()"><mat-icon>search</mat-icon></button>
 
+
+  <div id="flex">
+    <div id="a" *ngIf="showgr">
+      <google-chart
+      [title]="title"
+      [type]="type"
+      [data]="data"
+      [columns]="columns"
+      [options]="options"
+      [width]="chartWidth"
+      [height]="chartHeight"
+      [dynamicResize]="true">
+    </google-chart>
+    </div>
+  </div>
+  <div id="flex">
+    <div id="b" *ngIf="showgr">
+      <table mat-table [dataSource]="incasso">
+        <ng-container matColumnDef="Negozio">
+          <th mat-header-cell *matHeaderCellDef> Negozio </th>
+          <td mat-cell *matCellDef="let riga"> {{riga.Negozio}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Oggi">
+          <th  mat-header-cell *matHeaderCellDef> Incasso</th>
+          <td  mat-cell *matCellDef="let riga">
+            <button mat-button >{{riga.Oggi| currency:'EUR'}}</button>  </td>
+        </ng-container>
+        <ng-container matColumnDef="Pezzi">
+          <th  mat-header-cell *matHeaderCellDef> Pz</th>
+          <td  mat-cell *matCellDef="let riga"> {{riga.Pezzi}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Scontrini">
+          <th  mat-header-cell *matHeaderCellDef> N.S</th>
+          <td  mat-cell *matCellDef="let riga"> {{riga.Scontrini}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="h1"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: h1"></tr>
+      </table>
+  </div>
+
+
+

@@ -1,0 +1,16 @@
+table{
+  width: 40vw;
+}
+td, th{
+  text-align: left;
+}
+#flex { display: flex;   align-items: center;}
+#a { order: 2;   width: 100vw; float: left;}
+#b { order: 1;   width: 33vw; float: left;}
+#c { order: 3;   width: 33vw; float: left;}
+#ricerca { order: 1;  width: 33vw; float: left; width: 100vw;}
+#barra { order: 1;  width: 33vw; float: left; width: 100vw;}
+#contenuto{order: 1;  width: 33vw; float: left; width: 33vw; height: 70vh;}
+#grafici{order: 1; margin-top: 0.5vw; width: 33vw; float: left; width: 66vw; height: 70vh;}
+#graficiint{order: 1; width: 100vw; float: left; width: 66vw; height: 30vh;}
+#tabella{order: 1;   width: 49vw; float: left; height: auto;}

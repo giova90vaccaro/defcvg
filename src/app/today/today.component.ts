@@ -67,7 +67,6 @@ export class TodayComponent implements OnInit {
       data=>{
         this.incasso=data;
         var gr = this.incasso.map(function(aux:any){return [aux.Negozio, parseInt(aux.Oggi)]})
-        gr = [['Negozio', 'Oggi']].concat(gr);
         this.negozio = this.incasso[0].Negozio;
         this.estore = this.incasso[0].Oggi;
         this.shstore = false;
