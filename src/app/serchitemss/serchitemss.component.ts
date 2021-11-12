@@ -44,6 +44,9 @@ export class SerchitemssComponent implements OnInit {
 
   costob=false;
 
+  chartHeight = window.innerHeight * 0.3
+  chartWidth = window.innerWidth * 0.6
+
   public   title!: string;
   public   type!: ChartType;
   public   data!: any[][];
@@ -103,8 +106,7 @@ export class SerchitemssComponent implements OnInit {
                       this.data2= this.testrighe,
                       this.options2= {
                         vAxis: { title: 'Pz' },
-                        hAxis: { title: 'Week' },
-		                    width: 700
+                        hAxis: { title: 'Week' }
                       }
 
                     this.grafico = true;
@@ -125,8 +127,7 @@ export class SerchitemssComponent implements OnInit {
                     this.data=this.testrighe2
                     this.options= {
                         vAxis: { title: 'Pz' },
-                        hAxis: { title: 'Week' },
-		                    width: 700
+                        hAxis: { title: 'Week' }
                       };
                     this.grafico2 = true;
 
