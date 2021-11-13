@@ -79,7 +79,7 @@ export class HistorystoreComponent implements OnInit {
         this.grincasso=data;
         var i:number
           for(i=0; i<this.grincasso.length; i++){
-              var aux = [this.grincasso[i].Giorno+' h', Number(this.grincasso[i].Incasso), this.grincasso[i].Pezzi, this.grincasso[i].Scontrini];
+              var aux = [this.grincasso[i].Giorno, Number(this.grincasso[i].Incasso), this.grincasso[i].Pezzi, this.grincasso[i].Scontrini];
               this.righe.push(aux);
             }
               this.title = "Andamento Incassi - Pezzi - Scontrini"
@@ -101,18 +101,18 @@ export class HistorystoreComponent implements OnInit {
       this.righe2=[];
       var i:number
         for(i=0; i<this.orario.length; i++){
-          var aux = [this.orario[i].ora, Number(this.orario[i].Totale), Number(this.orario[i].Pezzi), Number(this.orario[i].Scotnrini) ]
+          var aux = [this.orario[i].ora+' h', Number(this.orario[i].Totale), Number(this.orario[i].Pezzi) ]
           this.righe2.push(aux)
         }
         this.title2= 'Material Bar Chart'
         this.type2= ChartType.Bar
-        this.columns2 = ['Ora', 'Incasso', 'Pezzi', 'Scontrini']
+        this.columns2 = ['Ora', 'Incasso', 'Pezzi']
 
         this.data2 = this.righe2
         this.options2={
           chart: {
             title: 'Andamento Fascia Oraria',
-            subtitle: 'Totale Scontrinato - Numero di Pezzi - Numero Scontrini'
+            subtitle: 'Totale Scontrinato - Numero di Pezzi'
           } // Required for Material Bar Charts.
         }
         this.showgr2=true
