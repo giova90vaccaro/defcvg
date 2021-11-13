@@ -6,8 +6,9 @@ td, th{
 }
 #flex { display: flex;   align-items: center;}
 #a { order: 2;   width: 100vw; float: left;}
-#b { order: 1;   width: 33vw; float: left;}
-#c { order: 3;   width: 33vw; float: left;}
+#b { order: 3;   width: 50vw; float: left;}
+#cw { order: 3;   width: 5vw; float: right; align-items: center; }
+#c { order: 3;   width: 50vw; float: right; align-items: center; }
 #ricerca { order: 1;  width: 33vw; float: left; width: 100vw;}
 #barra { order: 1;  width: 33vw; float: left; width: 100vw;}
 #contenuto{order: 1;  width: 33vw; float: left; width: 33vw; height: 70vh;}
