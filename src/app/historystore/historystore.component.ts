@@ -83,6 +83,7 @@ export class HistorystoreComponent implements OnInit {
       data=>{
         this.grincasso=[]
         this.righe=[];
+        this.righealt = [];
         this.grincasso=data;
         var i:number
           for(i=0; i<this.grincasso.length; i++){
@@ -108,6 +109,7 @@ export class HistorystoreComponent implements OnInit {
     data=>{
       this.orario = data
       this.righe2=[];
+      this.reghealt2 = [];
       var i:number
         for(i=0; i<this.orario.length; i++){
           var aux = [this.orario[i].ora+' h', Number(this.orario[i].Totale) ]
