@@ -64,8 +64,8 @@ export class HistorystoreComponent implements OnInit {
     this.showgr=false
     this.showgr2=false
     this.bar=true;
-    console.log(this.range.value.start.toLocaleDateString())
-    console.log(this.range.value.end.toLocaleDateString())
+    console.log(this.range.value.start.toLocaleDateString("en-US"))
+    console.log(this.range.value.end.toLocaleDateString("en-US"))
     var date = "d1="+this.range.value.start.toLocaleDateString()+"&d2="+this.range.value.end.toLocaleDateString()
     this.api.get("https://cvggold-dash.ns0.it/json/hstinc.php?"+date).subscribe(
       data=>{

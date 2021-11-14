@@ -5,7 +5,7 @@ td, th{
   text-align: left;
 }
 #flex { display: flex;   align-items: center;}
-#a { order: 2;   width: 100vw; float: left;}
+#a { order: 2; margin-left: 2vw;  width: 97vw; float: left;}
 #b { order: 3;   width: 50vw; float: left;}
 #cw { order: 3;   width: 5vw; float: right; align-items: center; }
 #c { order: 3;   width: 50vw; float: right; align-items: center; }

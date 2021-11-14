@@ -65,8 +65,8 @@ export class SvenditeComponent implements OnInit {
     this.spinner = true;
       this.d_inizio = this.range.value.start;
       this.d_fine = this.range.value.end;
-      var inizio = this.d_inizio.toLocaleDateString()
-      var fine = this.d_fine.toLocaleDateString()
+      var inizio = this.d_inizio.toLocaleDateString("en-US")
+      var fine = this.d_fine.toLocaleDateString("en-US")
 
       const dat="?d1="+inizio+"&d2="+fine;
       console.log(dat)
