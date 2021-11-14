@@ -31,6 +31,8 @@ export class HistorystoreComponent implements OnInit {
   righe2:any[]=[];
   righealt2:any[]=[];
 
+  tasto = "Pezzi - Scontrini"
+
   changgra:boolean=false;
 
   public   title!: string;
@@ -141,6 +143,7 @@ export class HistorystoreComponent implements OnInit {
       this.columns2 = ['Ora', 'Scontrini', 'Pezzi']
       this.data2 = this.righealt2
       this.changgra=!this.changgra
+      this.tasto = "Importo  €"
     }else{
       this.data = []
       this.title = "Andamento Incassi"
@@ -150,6 +153,7 @@ export class HistorystoreComponent implements OnInit {
       this.data2 = this.righe2
       this.changgra = !this.changgra
       this.columns = this.col
+      this.tasto = "Pezzi - Scontrini"
     }
   }
 

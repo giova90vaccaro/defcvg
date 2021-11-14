@@ -15,3 +15,4 @@ td, th{
 #grafici{order: 1; margin-top: 0.5vw; width: 33vw; float: left; width: 66vw; height: 70vh;}
 #graficiint{order: 1; width: 100vw; float: left; width: 66vw; height: 30vh;}
 #tabella{order: 1;   width: 49vw; float: left; height: auto;}
+#button{order: 1; }

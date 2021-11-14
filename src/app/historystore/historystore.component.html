@@ -11,8 +11,8 @@
   <button mat-icon-button (click)="rdate()"><mat-icon>search</mat-icon></button>
   <mat-progress-bar *ngIf="bar" mode="indeterminate"></mat-progress-bar>
   <div id="flex">
-    <div id="a" *ngIf="showgr">
-      <button (click)="cambioDati()" mat-icon-button><mat-icon>assessment</mat-icon></button>
+    <div id="button" *ngIf="showgr">
+      <button (click)="cambioDati()" mat-button>{{tasto}}</button>
     </div>
   </div>
   <div id="flex">
