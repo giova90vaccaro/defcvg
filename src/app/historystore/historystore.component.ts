@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
@@ -26,8 +27,11 @@ export class HistorystoreComponent implements OnInit {
   grincasso!:any;
   orario!:any;
   righe:any[]=[];
+  righealt:any[]=[];
   righe2:any[]=[];
+  righealt2:any[]=[];
 
+  changgra:boolean=false;
 
   public   title!: string;
   public   type!: ChartType;
@@ -51,8 +55,9 @@ export class HistorystoreComponent implements OnInit {
   chartWidth = window.innerWidth*0.9
 
   h1:string[]=['Negozio', 'Oggi', 'Pezzi', 'Scontrini'];
-  h2:string[]=['ora', 'Totale', 'Scontrini', 'Pezzi']
-  col:string[]=['Giorno','Incasso','Pezzi','Scontrini'];
+  h2:string[]=['ora', 'Totale', 'Scontrini', 'Pezzi'];
+  col:string[]=['Giorno','Incasso'];
+  col2:string[]=['ora', 'Totale'];
 
 
   constructor(private api:HttpClient, private req:HttpClient, private ora :HttpClient) { }
@@ -79,15 +84,17 @@ export class HistorystoreComponent implements OnInit {
         this.grincasso=data;
         var i:number
           for(i=0; i<this.grincasso.length; i++){
-              var aux = [this.grincasso[i].Giorno, Number(this.grincasso[i].Incasso), this.grincasso[i].Pezzi, this.grincasso[i].Scontrini];
+              var aux = [this.grincasso[i].Giorno, Number(this.grincasso[i].Incasso)];
+              var y = [this.grincasso[i].Giorno, Number(this.grincasso[i].Scontrini), Number(this.grincasso[i].Pezzi)];
+              this.righealt.push(y)
               this.righe.push(aux);
             }
-              this.title = "Andamento Incassi - Pezzi - Scontrini"
+              this.title = "Andamento Incassi"
               this.type = ChartType.ComboChart
               this.columns = this.col
               this.data = this.righe
               this.options= {
-                vAxis: { title: '€-Pz-Sc' },
+                vAxis: { title: '€' },
                 hAxis: { title: 'Week' }
               }
               this.showgr = true;
@@ -101,12 +108,14 @@ export class HistorystoreComponent implements OnInit {
       this.righe2=[];
       var i:number
         for(i=0; i<this.orario.length; i++){
-          var aux = [this.orario[i].ora+' h', Number(this.orario[i].Totale), Number(this.orario[i].Pezzi) ]
+          var aux = [this.orario[i].ora+' h', Number(this.orario[i].Totale) ]
+          var y = [this.orario[i].ora+' h', Number(this.orario[i].Scontrini), Number(this.orario[i].Pezzi)]
           this.righe2.push(aux)
+          this.righealt2.push(y)
         }
-        this.title2= 'Material Bar Chart'
+        this.title2= 'Fascia Oraria'
         this.type2= ChartType.Bar
-        this.columns2 = ['Ora', 'Incasso', 'Pezzi']
+        this.columns2 = this.col2
 
         this.data2 = this.righe2
         this.options2={
@@ -119,6 +128,29 @@ export class HistorystoreComponent implements OnInit {
 
     }
     )
+  }
+
+  cambioDati():void{
+
+    if(!this.changgra){
+      this.data = []
+      this.title = "Andamento Pezzi - Scontrini"
+      this.columns = ['Giorno','Scontrini', 'Pezzi']
+      this.data = this.righealt;
+      this.data2 = []
+      this.columns2 = ['Ora', 'Scontrini', 'Pezzi']
+      this.data2 = this.righealt2
+      this.changgra=!this.changgra
+    }else{
+      this.data = []
+      this.title = "Andamento Incassi"
+      this.data = this.righe;
+      this.data2 = []
+      this.columns2 = this.col2
+      this.data2 = this.righe2
+      this.changgra = !this.changgra
+      this.columns = this.col
+    }
   }
 
 }

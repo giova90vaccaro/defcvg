@@ -12,6 +12,12 @@
   <mat-progress-bar *ngIf="bar" mode="indeterminate"></mat-progress-bar>
   <div id="flex">
     <div id="a" *ngIf="showgr">
+      <button (click)="cambioDati()" mat-icon-button><mat-icon>assessment</mat-icon></button>
+    </div>
+  </div>
+  <div id="flex">
+    <div id="a" *ngIf="showgr">
+
       <google-chart
       [title]="title"
       [type]="type"
