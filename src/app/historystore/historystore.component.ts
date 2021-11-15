@@ -53,6 +53,8 @@ export class HistorystoreComponent implements OnInit {
   bar:boolean = false;
   chartHeight = window.innerHeight * 0.3
   chartHeight2 = window.innerHeight * 0.5
+  data1!:string;
+  data22!:string;
 
   chartWidth = window.innerWidth*0.9
 
@@ -71,8 +73,9 @@ export class HistorystoreComponent implements OnInit {
     this.showgr=false
     this.showgr2=false
     this.bar=true;
-    console.log(this.range.value.start.toLocaleDateString("en-US"))
-    console.log(this.range.value.end.toLocaleDateString("en-US"))
+
+    this.data1 = this.range.value.start.toLocaleDateString("it-IT")
+    this.data22 = this.range.value.end.toLocaleDateString("it-IT")
     var date = "d1="+this.range.value.start.toLocaleDateString()+"&d2="+this.range.value.end.toLocaleDateString()
     this.api.get("https://cvggold-dash.ns0.it/json/hstinc.php?"+date).subscribe(
       data=>{
@@ -92,7 +95,7 @@ export class HistorystoreComponent implements OnInit {
               this.righealt.push(y)
               this.righe.push(aux);
             }
-              this.title = "Andamento Incassi"
+              this.title = "Andamento Incassi da: "+this.data1+" al:"+this.data22
               this.type = ChartType.ComboChart
               this.columns = this.col
               this.data = this.righe
@@ -124,7 +127,7 @@ export class HistorystoreComponent implements OnInit {
         this.data2 = this.righe2
         this.options2={
           chart: {
-            title: 'Andamento Fascia Oraria',
+            title: "Andamento FasciaOraria da: "+this.data1+" al:"+this.data22,
             subtitle: 'Totale Scontrinato - Numero di Pezzi'
           } // Required for Material Bar Charts.
         }
@@ -138,7 +141,7 @@ export class HistorystoreComponent implements OnInit {
 
     if(!this.changgra){
       this.data = []
-      this.title = "Andamento Pezzi - Scontrini"
+      this.title = "Andamento Pezzi - Scontrini da: "+this.data1+" al:"+this.data22,
       this.columns = ['Giorno','Scontrini', 'Pezzi']
       this.data = this.righealt;
       this.data2 = []
@@ -148,7 +151,7 @@ export class HistorystoreComponent implements OnInit {
       this.tasto = "Importo  €"
     }else{
       this.data = []
-      this.title = "Andamento Incassi"
+      this.title = "Andamento Incassi da: "+this.data1+" al:"+this.data22
       this.data = this.righe;
       this.data2 = []
       this.columns2 = this.col2

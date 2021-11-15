@@ -94,13 +94,6 @@ export class TodayComponent implements OnInit {
       }
     );
 
-
-    if(window.innerWidth>250 && window.innerWidth<900)
-      this.disp=true;
-    if(window.innerWidth<251)
-      this.disp=false;
-    else
-      this.disp=true;
   }
 }
 @Component({

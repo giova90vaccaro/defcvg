@@ -1,5 +1,5 @@
 table{
-  width: 40vw;
+  width: 98vw;
 }
 td, th{
   text-align: left;
@@ -8,7 +8,7 @@ td, th{
 #a { order: 2; margin-left: 2vw;  width: 97vw; float: left;}
 #b { order: 3;   width: 50vw; float: left;}
 #cw { order: 3;   width: 5vw; float: right; align-items: center; }
-#c { order: 3;   width: 50vw; float: right; align-items: center; }
+#c { order: 3;   width: 100vw; float: right; align-items: center; }
 #ricerca { order: 1;  width: 33vw; float: left; width: 100vw;}
 #barra { order: 1;  width: 33vw; float: left; width: 100vw;}
 #contenuto{order: 1;  width: 33vw; float: left; width: 33vw; height: 70vh;}
@@ -16,3 +16,7 @@ td, th{
 #graficiint{order: 1; width: 100vw; float: left; width: 66vw; height: 30vh;}
 #tabella{order: 1;   width: 49vw; float: left; height: auto;}
 #button{order: 1; }
+mat-card{
+  width: 99vw;
+  text-align: left;
+}
