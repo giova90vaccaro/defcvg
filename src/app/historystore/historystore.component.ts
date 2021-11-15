@@ -50,6 +50,10 @@ export class HistorystoreComponent implements OnInit {
   showgr:boolean=false
   showgr2:boolean=false
 
+  public categoriaricerca!:any;
+  public perccatq=0
+  public perccatt=0
+
   bar:boolean = false;
   chartHeight = window.innerHeight * 0.3
   chartHeight2 = window.innerHeight * 0.5
@@ -62,9 +66,10 @@ export class HistorystoreComponent implements OnInit {
   h2:string[]=['ora', 'Totale', 'Scontrini', 'Pezzi'];
   col:string[]=['Giorno','Incasso'];
   col2:string[]=['ora', 'Totale'];
+  cathead:string[]=['Categoria', 'qta','qtaperc', 't', 'tperc']
 
 
-  constructor(private api:HttpClient, private req:HttpClient, private ora :HttpClient) { }
+  constructor(private api:HttpClient, private req:HttpClient, private ora :HttpClient, private cat:HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -76,7 +81,9 @@ export class HistorystoreComponent implements OnInit {
 
     this.data1 = this.range.value.start.toLocaleDateString("it-IT")
     this.data22 = this.range.value.end.toLocaleDateString("it-IT")
-    var date = "d1="+this.range.value.start.toLocaleDateString()+"&d2="+this.range.value.end.toLocaleDateString()
+    console.log(this.data1)
+    console.log(this.data22)
+    var date = "d1="+this.range.value.start.toLocaleDateString("it-IT")+"&d2="+this.range.value.end.toLocaleDateString("it-IT")
     this.api.get("https://cvggold-dash.ns0.it/json/hstinc.php?"+date).subscribe(
       data=>{
         this.incasso = data
@@ -129,11 +136,21 @@ export class HistorystoreComponent implements OnInit {
           chart: {
             title: "Andamento FasciaOraria da: "+this.data1+" al:"+this.data22,
             subtitle: 'Totale Scontrinato - Numero di Pezzi'
-          } // Required for Material Bar Charts.
+          }
         }
         this.showgr2=true
 
     }
+    )
+    this.cat.get("https://cvggold-dash.ns0.it/json/store/catperstore.php?"+date).subscribe(
+      data=>{
+        this.categoriaricerca = data;
+        var i=0
+          for(i=0; i<this.categoriaricerca.length; i++){
+            this.perccatq = Number(this.categoriaricerca[i].qta)+this.perccatq;
+            this.perccatt = Number(this.categoriaricerca[i].t)+this.perccatt;
+          }
+      }
     )
   }
 
