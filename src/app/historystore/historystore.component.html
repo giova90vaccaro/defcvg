@@ -112,8 +112,7 @@
             <mat-card-subtitle>Date Interessate: {{data1}} fino {{data22}}</mat-card-subtitle>
             <mat-card-content>
               <mat-progress-bar *ngIf="!showcat" mode="indeterminate"></mat-progress-bar>
-
-              <table mat-table *ngIf="showcat" [dataSource]="categoriaricerca" matSort>
+            <table mat-table *ngIf="showcat" [dataSource]="categoriaricerca" matSort>
                 <ng-container matColumnDef="Categoria">
                   <th mat-header-cell *matHeaderCellDef> Categoria </th>
                   <td mat-cell *matCellDef="let riga"> {{riga.Categoria}} </td>

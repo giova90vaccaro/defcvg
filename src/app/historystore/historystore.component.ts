@@ -159,6 +159,7 @@ export class HistorystoreComponent implements OnInit {
           }
           this.dataSource = new MatTableDataSource(this.categoriaricerca);
           this.showcat = true;
+
       }
     )
   }
