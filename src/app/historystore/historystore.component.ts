@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit,ViewChild } from '@angular/core';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   ChartErrorEvent,
@@ -18,6 +19,12 @@ import {
   styleUrls: ['./historystore.component.css']
 })
 export class HistorystoreComponent implements OnInit {
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
 
   range = new FormGroup({
     start: new FormControl(),
@@ -53,7 +60,7 @@ export class HistorystoreComponent implements OnInit {
   public categoriaricerca!:any;
   public perccatq=0
   public perccatt=0
-
+  public dataSource!:any;
   bar:boolean = false;
   chartHeight = window.innerHeight * 0.3
   chartHeight2 = window.innerHeight * 0.5
@@ -81,8 +88,7 @@ export class HistorystoreComponent implements OnInit {
 
     this.data1 = this.range.value.start.toLocaleDateString("it-IT")
     this.data22 = this.range.value.end.toLocaleDateString("it-IT")
-    console.log(this.data1)
-    console.log(this.data22)
+
     var date = "d1="+this.range.value.start.toLocaleDateString("it-IT")+"&d2="+this.range.value.end.toLocaleDateString("it-IT")
     this.api.get("https://cvggold-dash.ns0.it/json/hstinc.php?"+date).subscribe(
       data=>{
@@ -150,6 +156,7 @@ export class HistorystoreComponent implements OnInit {
             this.perccatq = Number(this.categoriaricerca[i].qta)+this.perccatq;
             this.perccatt = Number(this.categoriaricerca[i].t)+this.perccatt;
           }
+          this.dataSource = new MatTableDataSource(this.categoriaricerca);
       }
     )
   }

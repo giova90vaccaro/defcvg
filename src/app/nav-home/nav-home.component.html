@@ -7,7 +7,10 @@
       </button>
       <h1 style="text-align: center;">CVG GOLD</h1>
     </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="showFiller">
+      <mat-toolbar-row class="row2" *ngIf="showFiller">
+        <button mat-icon-button>
+          <mat-icon (click)="toggleSidenav()" >menu</mat-icon>
+        </button>
         <a mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
         <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
         <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
@@ -17,28 +20,28 @@
         <a mat-button>Saldi</a>
         <a mat-button>Nuovo Articolo</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3"  *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active"> Vendite Categoria</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active"> Ricerca Articoli</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3" class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/history" routerLinkActive="active">Incasso - Andamento</a>
         </mat-toolbar-row>
         <mat-toolbar-row *ngIf="showFiller2">
           <a mat-button>Saldi</a>
         </mat-toolbar-row>
-        <mat-toolbar-row *ngIf="showFiller2">
+        <mat-toolbar-row class="ro3"  *ngIf="showFiller2">
           <a mat-button>Nuovo Articolo</a>
         </mat-toolbar-row>
 </mat-toolbar>
