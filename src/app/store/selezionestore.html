@@ -1,0 +1,7 @@
+<p style="text-align: center; width: 100%;">Selezione Negozio :</p>
+    <mat-form-field style="align-items: center;width: 100%;" appearance="fill">
+      <mat-label>Negozio</mat-label>
+        <mat-select [(value)]="negozio">
+          <mat-option mat-button (click)="refturn()" #negozio *ngFor="let x of store" value="{{x.nome+';'+x.serie}}">{{x.nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>

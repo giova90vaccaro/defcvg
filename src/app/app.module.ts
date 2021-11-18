@@ -28,7 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { StoreComponent } from './store/store.component';
+import { StoreComponent ,SelezioneStore} from './store/store.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -63,9 +63,10 @@ import { HistorystoreComponent } from './historystore/historystore.component';
     StoreComponent,
     DialogContentExampleDialog,
     MessaggioComponent,
-    HistorystoreComponent
+    HistorystoreComponent,
+    SelezioneStore
   ],
-  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent],
+  entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent,SelezioneStore],
   imports: [
     BrowserModule,
     AppRoutingModule,
