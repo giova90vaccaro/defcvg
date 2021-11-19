@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   ChartErrorEvent,ChartMouseLeaveEvent,
@@ -8,6 +8,9 @@ import {
 } from 'angular-google-charts';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-store',
@@ -15,6 +18,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent implements OnInit {
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   public   title!: string;
   public   type!: ChartType;
@@ -30,6 +38,8 @@ export class StoreComponent implements OnInit {
   public rigaIncassi:any[]=[]
   graincasso=false
 
+  show2=false;
+
   chartHeight = window.innerHeight * 0.3
   chartWidth = window.innerWidth*0.9
 
@@ -37,7 +47,9 @@ export class StoreComponent implements OnInit {
   negozio:any
   cat:any;
   iorario:any;
+  vendite!:any
   items:any;
+  showdate=false
   serie!:string;
   ricerca:boolean=false
   incassi!:any;
@@ -45,9 +57,14 @@ export class StoreComponent implements OnInit {
   panelOpenState = false;
   h3=['cart', 'dart', 'Venduto', 'Consegnato', 'perc'];
   h2=['cat', 'Venduto', 'Consegnato', 'perc'];
+  header:string[]=['a','cat1', 'b','c', 'd', 'perc'];
   idNegozio:any;
 
-  constructor(private api:HttpClient,public storeselect: MatDialog, private router: Router, private apiinc:HttpClient) {
+  @ViewChild(MatPaginator, {static:false}) set paginator (value : MatPaginator){
+    this.vendite.paginator = value;
+  }
+
+  constructor(private api:HttpClient,public storeselect: MatDialog,private richiesta:HttpClient ,private router: Router, private apiinc:HttpClient) {
 
 
      const dialogRef = this.storeselect.open(SelezioneStore,{width: '25%'})
@@ -58,6 +75,7 @@ export class StoreComponent implements OnInit {
               this.NomeNegozio=this.idNegozio.split(";", 2)
               this.ricerca=!this.ricerca
               this.Orario(this.NomeNegozio[1])
+              this.serie = this.NomeNegozio[1]
           }else{
             window.location.reload();
           }
@@ -132,21 +150,26 @@ export class StoreComponent implements OnInit {
         )
 
     }
-    Categoria():void{
-      this.api.get("http://cvggold-dash.ns0.it/prodotti/vendor.php?serie="+this.negozio).subscribe(
-        data=>{
-          this.cat = data
-          console.log(this.cat);
-        }
-      )
+    searchDate():void{
+      if(this.range.value.start!=null){
+        var aux:any;
+        this.showdate=true
+        const dat="d1="+this.range.value.start.toLocaleDateString("en-US")+"&d2="+this.range.value.end.toLocaleDateString("en-US");
+          this.richiesta.get("https://cvggold-dash.ns0.it/json/store/venditetd_json.php?serie="+this.serie+"&"+dat).subscribe(
+            data=>{
+              aux=data
+              this.vendite = new MatTableDataSource(aux);
+              console.log(this.vendite)
+              this.show2 = true
 
-    }
-    Articolo():void{
-      this.api.get("http://cvggold-dash.ns0.it/prodotti/itsold.php?serie="+this.negozio).subscribe(
-        data=>{
-          this.items = data;
-        }
-      )
+            }
+          )
+        console.log(this.range.value.start.toLocaleDateString("en-US"))
+        console.log(this.range.value.end.toLocaleDateString("en-US"))
+      }else{
+        console.log("Nessuna data inserita")
+      }
+
     }
 
   }

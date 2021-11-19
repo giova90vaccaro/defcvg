@@ -9,23 +9,11 @@ text-align: left;
 mat-card-subtitle{
   text-align: left;
 }
-table{
-  width: 100%;
-}
-td{
+td,th{
   text-align: left;
-  font-size: 80%;
 }
-td.inc{
-  text-align: center;
-  font-size: 80%;
-}
-th{
-  font-size: 90%;
-}
-th.inc{
-  text-align: center;
-  font-size: 90%;
+table{
+  width: 50%;
 }
 :host {
   display: flex;
@@ -38,4 +26,7 @@ th.inc{
 }
 mat-select{
   vertical-align: auto;
+}
+mat-paginator{
+  width: 50%;
 }
