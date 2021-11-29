@@ -1,3 +1,4 @@
+@media screen and (min-width: 751px) {
 mat-card{
   margin-top: 3%;
   width: 46%;
@@ -64,4 +65,37 @@ button{
   color: green;
   font-size: medium;
 
+}
+}
+@media screen and (max-width: 751px) {
+  mat-card{
+    width: 99%;
+    align-content: center;
+    float:left;
+    display:block
+  }
+  table{
+    width: 100%;
+  }
+  .int{
+    text-align: center;
+    color: silver;
+    font-size: small;
+  }
+  td.inc{
+    text-align: center;
+    font-size: 80%;
+  }
+  td{
+    text-align: center;
+    font-size: 80%;
+  }
+  th{
+    text-align: center;
+    font-size: 80%;
+  }
+  th.inc{
+    text-align: center;
+    font-size: 90%;
+  }
 }

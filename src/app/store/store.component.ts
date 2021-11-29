@@ -64,7 +64,7 @@ export class StoreComponent implements OnInit {
     this.vendite.paginator = value;
   }
 
-  constructor(private api:HttpClient,public storeselect: MatDialog,private richiesta:HttpClient ,private router: Router, private apiinc:HttpClient) {
+  constructor(private api:HttpClient,public storeselect: MatDialog,private richiesta:HttpClient ,private richiestacat:HttpClient,private router: Router, private apiinc:HttpClient) {
 
 
      const dialogRef = this.storeselect.open(SelezioneStore,{width: '25%'})
@@ -144,7 +144,6 @@ export class StoreComponent implements OnInit {
                }
                this.graincasso = true;
 
-            console.log(this.rigaIncassi)
 
           }
         )
@@ -159,13 +158,15 @@ export class StoreComponent implements OnInit {
             data=>{
               aux=data
               this.vendite = new MatTableDataSource(aux);
-              console.log(this.vendite)
               this.show2 = true
-
             }
           )
-        console.log(this.range.value.start.toLocaleDateString("en-US"))
-        console.log(this.range.value.end.toLocaleDateString("en-US"))
+          this.richiestacat.get("https://cvggold-dash.ns0.it/json/store/catDate.php?serie="+this.serie+"&"+dat).subscribe(
+            data=>{
+              console.log(data)
+            }
+          )
+
       }else{
         console.log("Nessuna data inserita")
       }
