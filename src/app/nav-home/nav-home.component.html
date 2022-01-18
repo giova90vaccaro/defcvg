@@ -15,13 +15,14 @@
         <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
         <a mat-button (click)="resetshow()" routerLink="/vendite" routerLinkActive="active"> Vendite Articolo</a>
         <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active">Vendite Categoria</a>
+        <a mat-button (click)="resetshow()" routerLink="/Document" routerLinkActive="active">Documenti</a>
         <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active">Ricerca Articoli</a>
         <a mat-button (click)="resetshow()" routerLink="/history" routerLinkActive="active">Incasso - Andamento</a>
         <a mat-button>Saldi</a>
         <a mat-button>Nuovo Articolo</a>
         </mat-toolbar-row>
-        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
-          <a mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
+        <mat-toolbar-row *ngIf="showFiller2">
+          <a class="ro3" mat-button (click)="resetshow()" routerLink="/home" routerLinkActive="active">Home</a>
         </mat-toolbar-row>
         <mat-toolbar-row class="ro3"  *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/store" routerLinkActive="active">Negozi</a>
@@ -31,6 +32,9 @@
         </mat-toolbar-row>
         <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/categoria" routerLinkActive="active"> Vendite Categoria</a>
+        </mat-toolbar-row>
+        <mat-toolbar-row class="ro3" *ngIf="showFiller2">
+          <a mat-button (click)="resetshow()" routerLink="/Document" routerLinkActive="active"> Documenti</a>
         </mat-toolbar-row>
         <mat-toolbar-row class="ro3" *ngIf="showFiller2">
           <a mat-button (click)="resetshow()" routerLink="/sritemss" routerLinkActive="active"> Ricerca Articoli</a>

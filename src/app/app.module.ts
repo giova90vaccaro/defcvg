@@ -40,6 +40,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HistorystoreComponent } from './historystore/historystore.component';
+import { DocserchdetComponent } from './docserchdet/docserchdet.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { HistorystoreComponent } from './historystore/historystore.component';
     DialogContentExampleDialog,
     MessaggioComponent,
     HistorystoreComponent,
-    SelezioneStore
+    SelezioneStore,
+    DocserchdetComponent
   ],
   entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent,SelezioneStore],
   imports: [

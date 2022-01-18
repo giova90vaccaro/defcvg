@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TodayComponent } from './today/today.component';
 import { StoreComponent } from './store/store.component';
 import { HistorystoreComponent } from './historystore/historystore.component';
+import { DocserchdetComponent } from './docserchdet/docserchdet.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:"", component:StartComponent},
   {path:"vendite", component:SvenditeComponent},
   {path:"categoria", component:VcategoriaComponent},
-  {path:"history", component:HistorystoreComponent}
+  {path:"history", component:HistorystoreComponent},
+  {path:"Document", component:DocserchdetComponent}
 ];
 
 @NgModule({
