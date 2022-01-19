@@ -41,6 +41,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HistorystoreComponent } from './historystore/historystore.component';
 import { DocserchdetComponent } from './docserchdet/docserchdet.component';
+import { StockComponent } from './stock/stock.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { DocserchdetComponent } from './docserchdet/docserchdet.component';
     MessaggioComponent,
     HistorystoreComponent,
     SelezioneStore,
-    DocserchdetComponent
+    DocserchdetComponent,
+    StockComponent
   ],
   entryComponents: [DettArt,DettPage,DettPageArt,DettPageCat,DialogContentExampleDialog,Consegnato,Venduto, Tagliacolore, MessaggioComponent,SelezioneStore],
   imports: [

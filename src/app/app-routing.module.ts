@@ -8,17 +8,19 @@ import { TodayComponent } from './today/today.component';
 import { StoreComponent } from './store/store.component';
 import { HistorystoreComponent } from './historystore/historystore.component';
 import { DocserchdetComponent } from './docserchdet/docserchdet.component';
+import { StockComponent } from './stock/stock.component';
 
 
 const routes: Routes = [
-  {path:"home",  component:StartComponent},
-  {path:"store", component:StoreComponent},
-  {path:"sritemss", component:SerchitemssComponent},
+  {path:"Home",  component:StartComponent},
+  {path:"Store", component:StoreComponent},
+  {path:"Sritemss", component:SerchitemssComponent},
   {path:"", component:StartComponent},
-  {path:"vendite", component:SvenditeComponent},
-  {path:"categoria", component:VcategoriaComponent},
-  {path:"history", component:HistorystoreComponent},
-  {path:"Document", component:DocserchdetComponent}
+  {path:"Vendite", component:SvenditeComponent},
+  {path:"Categoria", component:VcategoriaComponent},
+  {path:"History", component:HistorystoreComponent},
+  {path:"Document", component:DocserchdetComponent},
+  {path:"Stock", component:StockComponent}
 ];
 
 @NgModule({

@@ -14,7 +14,7 @@
   <button mat-button (click)="controllo()"><mat-icon>search</mat-icon></button>
   <mat-progress-bar *ngIf="bar"  mode="buffer"></mat-progress-bar>
 
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group mat-align-tabs="center" *ngIf="showcat">
     <mat-tab label="Scontrini">
       <table mat-table *ngIf="showcat" [dataSource]="documentiCO" matSort>
         <ng-container matColumnDef="Data">
